@@ -40,22 +40,30 @@ export function QuemSou() {
                 Atendo em Braga e região. Suporte remoto em todo o país.
               </p>
 
-              {/* Números */}
-              <div className="mt-12 grid grid-cols-2 gap-8 border-t border-border pt-8">
+              {/* Destaques */}
+              <div className="mt-12 grid grid-cols-1 gap-6 border-t border-border pt-8 sm:grid-cols-3">
                 <div>
                   <p className="font-display text-[2rem] leading-none font-bold tracking-[-0.03em] text-ignition">
                     20+
                   </p>
-                  <p className="mt-3 text-[0.8rem] leading-tight uppercase tracking-[0.1em] text-muted-foreground">
-                    Anos de<br />experiência
+                  <p className="mt-3 text-[0.78rem] leading-tight uppercase tracking-[0.1em] text-muted-foreground">
+                    Anos de experiência
                   </p>
                 </div>
                 <div>
-                  <p className="font-display text-[2rem] leading-none font-bold tracking-[-0.03em] text-ignition">
-                    1º dia
+                  <p className="font-display text-[1.35rem] leading-none font-bold tracking-[-0.02em] uppercase">
+                    Braga
                   </p>
-                  <p className="mt-3 text-[0.8rem] leading-tight uppercase tracking-[0.1em] text-muted-foreground">
-                    Resposta em 24h<br />úteis
+                  <p className="mt-3 text-[0.78rem] leading-tight uppercase tracking-[0.1em] text-muted-foreground">
+                    Atendimento local
+                  </p>
+                </div>
+                <div>
+                  <p className="font-display text-[1.35rem] leading-none font-bold tracking-[-0.02em] uppercase">
+                    Remoto
+                  </p>
+                  <p className="mt-3 text-[0.78rem] leading-tight uppercase tracking-[0.1em] text-muted-foreground">
+                    Suporte em Portugal
                   </p>
                 </div>
               </div>

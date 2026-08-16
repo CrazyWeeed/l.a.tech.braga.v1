@@ -82,8 +82,8 @@ export function Hero() {
               loading={i === 0 ? "eager" : "lazy"}
               fetchPriority={i === 0 ? "high" : "low"}
               className={cn(
-                "h-full w-full object-cover transition-transform ease-linear",
-                i === index ? "scale-[1.08] duration-[8500ms]" : "scale-100 duration-0",
+                cn("h-full w-full transition-transform ease-linear", i === 0 ? "object-contain" : "object-cover"),
+                i === index ? (i === 0 ? "scale-100 duration-[8500ms]" : "scale-[1.08] duration-[8500ms]") : "scale-100 duration-0",
               )}
             />
           </div>

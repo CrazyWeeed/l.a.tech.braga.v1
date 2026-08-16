@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Reveal } from "./Reveal";
 
 const testimonials = [
@@ -34,6 +35,17 @@ const testimonials = [
 ];
 
 export function ProvaSocial() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setIndex((current) => (current + 1) % testimonials.length);
+    }, 6500);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const visible = [0, 1, 2].map((offset) => testimonials[(index + offset) % testimonials.length]);
+
   return (
     <section className="carbon-weave depth-dark relative scroll-mt-28 bg-obsidian py-24 md:py-32">
       <div className="section-seam" aria-hidden />
@@ -47,45 +59,48 @@ export function ProvaSocial() {
           </div>
         </Reveal>
 
-        <div className="mt-16 grid gap-8 md:mt-20 lg:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={120 + i * 160}>
-              <article className="card-pad card-quiet group relative border border-border bg-steel/50 backdrop-blur-[2px] hover:border-ignition/40 hover:bg-steel">
+        <div className="relative mt-16 overflow-hidden md:mt-20">
+          <div className="flex gap-6 transition-transform duration-700 ease-out">
+            {visible.map((t, i) => (
+              <article
+                key={`${t.name}-${index}-${i}`}
+                className="card-pad card-quiet min-w-full border border-border bg-steel/50 backdrop-blur-[2px] sm:min-w-[calc(50%-0.75rem)] lg:min-w-[calc(33.333%-1rem)]"
+              >
                 <div className="mb-6 flex gap-1">
                   {Array.from({ length: t.rating }).map((_, j) => (
-                    <span key={j} className="text-ignition font-display text-lg">
-                      ★
-                    </span>
+                    <span key={j} className="text-ignition font-display text-lg">★</span>
                   ))}
                 </div>
-
-                <p className="text-[0.95rem] leading-[1.85] text-foreground/85">
-                  "{t.text}"
-                </p>
-
+                <p className="text-[0.95rem] leading-[1.85] text-foreground/85">"{t.text}"</p>
                 <div className="mt-6 border-t border-border pt-4">
-                  <p className="font-display text-[0.9rem] font-bold uppercase tracking-[0.05em] text-foreground">
-                    {t.name}
-                  </p>
-                  <p className="mt-1 text-[0.8rem] uppercase tracking-[0.08em] text-muted-foreground">
-                    {t.role}
-                  </p>
+                  <p className="font-display text-[0.9rem] font-bold uppercase tracking-[0.05em] text-foreground">{t.name}</p>
+                  <p className="mt-1 text-[0.8rem] uppercase tracking-[0.08em] text-muted-foreground">{t.role}</p>
                 </div>
               </article>
-            </Reveal>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 flex justify-center gap-2" aria-label="Navegação das avaliações">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Ver avaliação ${i + 1}`}
+              onClick={() => setIndex(i)}
+              className={`h-1.5 transition-all duration-300 ${i === index ? "w-10 bg-ignition" : "w-5 bg-foreground/25 hover:bg-foreground/50"}`}
+            />
           ))}
         </div>
 
         <Reveal delay={200}>
           <div className="mt-16 border-t border-border pt-12 text-center md:mt-20">
-            <p className="text-[0.95rem] leading-[1.8] text-foreground/70">
-              Veja as avaliações reais no Google
-            </p>
+            <p className="text-[0.95rem] leading-[1.8] text-foreground/70">Veja as avaliações reais no Google</p>
             <a
               href="https://www.google.com/maps/search/L.A.+Tech+Braga"
               target="_blank"
               rel="noreferrer"
-              className="link-quiet inline-block mt-4 text-ignition"
+              className="link-quiet mt-4 inline-block text-ignition"
             >
               Google Maps →
             </a>
