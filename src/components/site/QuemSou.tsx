@@ -1,75 +1,64 @@
 import { Reveal } from "./Reveal";
-import quemSouPhoto from "@/assets/quem-sou.jpg";
 
 export function QuemSou() {
   return (
-    <section id="quem-sou" className="relative scroll-mt-28 bg-carbon py-24 md:py-32">
+    <section
+      id="quem-sou"
+      className="relative section-anchor bg-carbon py-20 md:py-24"
+    >
       <div className="relative z-[2] mx-auto max-w-[92rem] px-6 md:px-12">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-24 lg:items-center">
-          {/* Foto */}
-          <Reveal>
-            <div className="relative overflow-hidden">
-              <img
-                src={quemSouPhoto}
-                alt="O técnico de informática — reparação de desktop"
-                width={800}
-                height={1000}
-                loading="lazy"
-                className="h-auto w-full object-contain"
-              />
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-end lg:gap-20">
+          <Reveal className="lg:col-span-5">
+            <p className="eyebrow text-ignition">O técnico</p>
+            <div className="mt-7 flex items-end gap-5 border-b border-border pb-8">
+              <span className="font-display text-[5rem] font-bold leading-[0.82] tracking-[-0.04em] text-ignition md:text-[6.5rem]">
+                20+
+              </span>
+              <span className="max-w-[8rem] pb-1 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                anos de experiência
+              </span>
             </div>
           </Reveal>
 
-          {/* Conteúdo */}
-          <Reveal delay={160}>
-            <div>
-              <p className="eyebrow text-ignition">Quem sou eu</p>
-              <h2 className="font-display mt-8 text-[clamp(2rem,4vw,3.2rem)] leading-[1.08] font-bold tracking-[-0.015em] uppercase">
-                O técnico
-              </h2>
-
-              <p className="mt-8 text-[1rem] leading-[1.9] text-foreground/85">
-                Há 20 anos que abro máquinas para entender como funcionam. Começou como curiosidade, virou profissão, agora é expertise.
-              </p>
-
-              <p className="mt-6 text-[0.95rem] leading-[1.85] text-muted-foreground">
-                Quando o teu computador para, eu não faço um diagnóstico robótico e mando um email. Chamo, explico em português, resolvo — e fico disponível se tiver dúvidas.
-              </p>
-
-              <p className="mt-6 text-[0.95rem] leading-[1.85] text-muted-foreground">
-                Atendo em Braga e região. Suporte remoto em todo o país.
-              </p>
-
-              {/* Destaques */}
-              <div className="mt-12 grid grid-cols-1 gap-6 border-t border-border pt-8 sm:grid-cols-3">
-                <div>
-                  <p className="font-display text-[2rem] leading-none font-bold tracking-[-0.03em] text-ignition">
-                    20+
-                  </p>
-                  <p className="mt-3 text-[0.78rem] leading-tight uppercase tracking-[0.1em] text-muted-foreground">
-                    Anos de experiência
-                  </p>
-                </div>
-                <div>
-                  <p className="font-display text-[1.35rem] leading-none font-bold tracking-[-0.02em] uppercase">
-                    Braga
-                  </p>
-                  <p className="mt-3 text-[0.78rem] leading-tight uppercase tracking-[0.1em] text-muted-foreground">
-                    Atendimento local
-                  </p>
-                </div>
-                <div>
-                  <p className="font-display text-[1.35rem] leading-none font-bold tracking-[-0.02em] uppercase">
-                    Remoto
-                  </p>
-                  <p className="mt-3 text-[0.78rem] leading-tight uppercase tracking-[0.1em] text-muted-foreground">
-                    Suporte em Portugal
-                  </p>
-                </div>
-              </div>
-            </div>
+          <Reveal delay={120} className="lg:col-span-6 lg:col-start-7">
+            <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-[1.08] font-bold tracking-[-0.015em] uppercase">
+              Experiência para
+              <span className="block text-ignition">resolver o que importa.</span>
+            </h2>
+            <p className="mt-7 max-w-2xl text-[1rem] leading-[1.9] text-foreground/85">
+              Há mais de 20 anos que trabalho com informática. A experiência veio de
+              abrir máquinas, testar, resolver problemas e aprender a lidar com o que
+              realmente importa: fazer a tecnologia voltar a funcionar.
+            </p>
+            <p className="mt-5 max-w-2xl text-[0.92rem] leading-[1.85] text-muted-foreground">
+              Atendo em Braga e concelhos vizinhos. Quando o problema permite, o
+              suporte pode ser feito remotamente em todo o país.
+            </p>
           </Reveal>
         </div>
+
+        <Reveal delay={220}>
+          <div className="mt-12 grid border-y border-border sm:grid-cols-3">
+            <div className="border-b border-border px-6 py-6 sm:border-b-0 sm:border-r sm:px-8">
+              <p className="font-semibold text-foreground">Competência técnica</p>
+              <p className="mt-2 text-[0.84rem] leading-[1.7] text-muted-foreground">
+                Diagnóstico antes de trocar peças ou tomar decisões.
+              </p>
+            </div>
+            <div className="border-b border-border px-6 py-6 sm:border-b-0 sm:border-r sm:px-8">
+              <p className="font-semibold text-foreground">Atendimento local</p>
+              <p className="mt-2 text-[0.84rem] leading-[1.7] text-muted-foreground">
+                Casa ou escritório em Braga e concelhos vizinhos.
+              </p>
+            </div>
+            <div className="px-6 py-6 sm:px-8">
+              <p className="font-semibold text-foreground">Contato direto</p>
+              <p className="mt-2 text-[0.84rem] leading-[1.7] text-muted-foreground">
+                Fale diretamente com quem está a tratar do problema.
+              </p>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

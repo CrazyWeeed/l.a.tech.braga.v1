@@ -93,7 +93,7 @@
   --accent-foreground: var(--chrome);
   --destructive: oklch(0.62 0.24 27);
   --destructive-foreground: var(--chrome);
-  --border: oklch(1 0 0 / 11%);
+  --border: oklch(1 0 0 / 13%);
   --input: oklch(1 0 0 / 14%);
   --ring: var(--ignition);
 }
@@ -234,6 +234,10 @@
     oklch(0 0 0 / 0.18) 45%,
     transparent 100%
   );
+}
+
+@utility section-anchor {
+  scroll-margin-top: var(--nav-height, 5rem);
 }
 
 @utility eyebrow {

@@ -1,3 +1,29 @@
+# L.A. Tech Braga — Estado atual do projeto
+
+> Este repositório representa a versão consolidada após a auditoria de UI/UX, Front-End, Back-End, DevOps, IA/NLP, DBA e QA. O design deve ser preservado; novas alterações devem ser cirúrgicas e justificadas.
+
+## Decisões consolidadas
+
+- **Hero:** preservar identidade, composição e carrossel; WhatsApp é o CTA primário.
+- **Header:** permanece fixo, mas o Hero/âncoras respeitam estruturalmente a altura real do header via `--nav-height`; não usar hacks de padding/margin/translate por resolução.
+- **Espaço vertical:** seções foram compactadas onde havia conteúdo insuficiente para a altura ocupada. Não preencher espaço vazio adicionando conteúdo.
+- **Serviços:** manter três áreas principais e escrever a comunicação como problema → solução.
+- **História:** removida. Os 20+ anos aparecem de forma simples como prova de experiência.
+- **Método + Processo:** unificados em **Como funciona**, com três etapas e os princípios essenciais integrados.
+- **Abordagem:** posicionamento mantido, mas sem linguagem agressiva ou caricatural; foco em tecnologia sem complicação.
+- **Avaliações:** apenas avaliações existentes no projeto; não inventar comentários, nomes ou números. O código atual contém 5 textos de avaliações; o contexto do projeto indica 7 avaliações no Google, portanto os 2 textos restantes ainda não foram incorporados. A página direciona para o Google.
+- **O técnico:** não usar a foto artificial que estava no projeto. A seção ficou temporariamente sem foto até existir uma fotografia real do técnico; não substituir por outra imagem de IA.
+- **Contacto:** formulário reduzido a nome, telefone, localidade e descrição; objetivo é iniciar a conversa no WhatsApp, não criar um ticket completo.
+- **Footer:** inclui CTA final para WhatsApp.
+- **Back-End/DB/IA:** não adicionar arquitetura, banco ou IA sem uma necessidade operacional real.
+- **Performance/acessibilidade:** preservar `prefers-reduced-motion`, foco visível, labels persistentes, contraste e alvos de interação adequados.
+
+## Regra de manutenção
+
+Não redesenhar o site por iniciativa própria. Antes de qualquer mudança, identificar o problema, a hipótese técnica e o critério de aceitação. Validar desktop e mobile antes de considerar a alteração concluída.
+
+---
+
 # L.A. Tech Solutions
 
 Criar o site completo “L.A. Tech Braga” com visual premium, minimalista escuro e foco total em conversão para assistência informática ao domicílio em Braga.

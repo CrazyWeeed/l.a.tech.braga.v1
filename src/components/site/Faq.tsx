@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     q: "Quanto tempo demora?",
-    a: "A maioria das situações resolve-se no próprio dia ou no dia seguinte. Quando depende de peças, sabe o prazo antes de decidir.",
+    a: "O prazo depende do problema e, quando necessário, da disponibilidade de peças. O prazo previsto é explicado antes de decidir.",
   },
   {
     q: "Vale a pena arranjar ou compensa comprar novo?",
@@ -33,9 +33,9 @@ export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="depth-dark relative scroll-mt-28 bg-carbon py-28 md:py-40">
+    <section id="faq" className="depth-dark relative section-anchor bg-carbon py-20 md:py-24">
       <div className="section-seam" aria-hidden />
-      <div className="relative z-[2] mx-auto grid max-w-[92rem] gap-16 px-6 md:px-12 lg:grid-cols-12 lg:gap-24">
+      <div className="relative z-[2] mx-auto grid max-w-[92rem] gap-12 px-6 md:px-12 lg:grid-cols-12 lg:gap-20">
         <Reveal className="lg:col-span-4">
           <p className="eyebrow text-ignition">Dúvidas</p>
           <h2 className="font-display mt-8 text-[clamp(2.1rem,4.4vw,3.6rem)] leading-[1.02] font-bold tracking-[-0.015em] uppercase">
@@ -56,7 +56,7 @@ export function Faq() {
                         type="button"
                         onClick={() => setOpen(isOpen ? null : i)}
                         aria-expanded={isOpen}
-                        className="flex w-full items-center justify-between gap-8 py-7 text-left transition-colors duration-500 hover:text-ignition"
+                        className="flex w-full items-center justify-between gap-8 py-6 text-left transition-colors duration-500 hover:text-ignition"
                       >
                         <span className="font-display text-[1.1rem] font-bold tracking-[0.03em] uppercase md:text-[1.25rem]" itemProp="name">
                           {f.q}
@@ -84,7 +84,7 @@ export function Faq() {
                       itemScope
                       itemType="https://schema.org/Answer"
                     >
-                      <p className="pb-8 text-[0.92rem] leading-[1.95] text-muted-foreground" itemProp="text">
+                      <p className="pb-7 text-[0.92rem] leading-[1.95] text-muted-foreground" itemProp="text">
                         {f.a}
                       </p>
                     </dd>

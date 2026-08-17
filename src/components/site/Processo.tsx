@@ -5,40 +5,45 @@ const steps = [
   {
     n: "01",
     title: "Conta o que se passa",
-    body: "Uma chamada, uma mensagem ou o formulário aqui do site. Interessa saber o que aconteceu, quando começou e o que já tentou — isso poupa tempo aos dois.",
+    body: "Uma chamada, mensagem ou pedido pelo site. Interessa saber o que aconteceu e o que já tentou. Quando dá para resolver remotamente, não há deslocação; quando é preciso mexer no equipamento, marca-se a visita.",
   },
   {
     n: "02",
-    title: "Diagnóstico e estimativa",
-    body: "Análise remota ou visita marcada. Sabe o que está mal, o que se faz para corrigir e quanto custa, antes de dar luz verde.",
+    title: "Diagnóstico e orçamento",
+    body: "Primeiro percebe-se o problema, depois explica-se o que precisa de ser feito. O valor é apresentado antes da intervenção e nada avança sem a sua aprovação.",
   },
   {
     n: "03",
     title: "Resolvido e explicado",
-    body: "O trabalho é feito, testado à sua frente e explicado em linguagem normal. Fica com um registo do que foi feito e com o contacto aberto para dúvidas.",
+    body: "O trabalho é feito, testado e explicado em linguagem normal. Os seus dados são tratados com cuidado e fica registado o que foi feito para não começar do zero na próxima vez.",
   },
 ];
 
 export function Processo() {
-  const imgRef = useParallax<HTMLImageElement>(56);
+  const imgRef = useParallax<HTMLImageElement>(36);
 
   return (
-    <section id="processo" className="depth-dark relative scroll-mt-28 bg-carbon py-28 md:py-40">
+    <section
+      id="como-funciona"
+      className="depth-dark relative section-anchor bg-carbon py-20 md:py-24"
+    >
       <div className="section-seam" aria-hidden />
-      <div className="relative z-[2] mx-auto grid max-w-[92rem] gap-20 px-6 md:px-12 lg:grid-cols-12 lg:gap-24">
-        <div className="lg:col-span-5">
+      <div className="relative z-[2] mx-auto grid max-w-[92rem] gap-12 px-6 md:px-12 lg:grid-cols-12 lg:gap-20">
+        <div className="lg:col-span-4">
           <Reveal>
-            <p className="eyebrow text-ignition">Processo</p>
-            <h2 className="font-display mt-8 text-[clamp(2.1rem,4.4vw,3.6rem)] leading-[1.02] font-bold tracking-[-0.015em] uppercase">
-              Simples de propósito.
+            <p className="eyebrow text-ignition">Como funciona</p>
+            <h2 className="font-display mt-7 text-[clamp(2.1rem,4.4vw,3.6rem)] leading-[1.02] font-bold tracking-[-0.015em] uppercase">
+              Simples de
+              <span className="block text-ignition">propósito.</span>
             </h2>
-            <p className="mt-9 max-w-sm text-[0.9rem] leading-[1.95] text-muted-foreground">
-              Ninguém liga a um técnico por gosto. Liga porque tem trabalho parado.
-              O processo existe para tirar isso do caminho depressa.
+            <p className="mt-7 max-w-sm text-[0.9rem] leading-[1.9] text-muted-foreground">
+              Ninguém chama um técnico por gosto. O processo existe para tirar o
+              problema do caminho com clareza, sem surpresas no fim.
             </p>
           </Reveal>
-          <Reveal delay={200}>
-            <div className="img-breathe mt-14 hidden overflow-hidden border border-border shadow-lift lg:block">
+
+          <Reveal delay={160}>
+            <div className="img-breathe mt-10 hidden overflow-hidden border border-border shadow-lift lg:block">
               <img
                 ref={imgRef}
                 src={bench}
@@ -46,35 +51,57 @@ export function Processo() {
                 width={1600}
                 height={1008}
                 loading="lazy"
-                className="h-[26rem] w-full object-cover"
+                className="h-[18rem] w-full object-cover"
               />
             </div>
           </Reveal>
         </div>
 
-        <div className="lg:col-span-6 lg:col-start-7">
-          <ol className="space-y-px border border-border bg-border">
+        <div className="lg:col-span-7 lg:col-start-6">
+          <ol className="border-y border-border">
             {steps.map((s, i) => (
-              <Reveal key={s.n} delay={140 + i * 150} as="li">
-                <div className="card-pad card-quiet group relative bg-carbon hover:bg-steel overflow-hidden">
-                  {/* Progress bar */}
-                  <div className="absolute top-0 left-0 h-1 bg-ignition transition-all duration-500 group-hover:w-full" style={{ width: `${((i + 1) / steps.length) * 100}%` }} />
-                  
-                  <div className="flex items-baseline gap-6">
-                    <span className="numeral text-[3.5rem] font-bold transition-all duration-500 group-hover:text-ignition group-hover:scale-110 origin-left">
+              <Reveal key={s.n} delay={100 + i * 100} as="li">
+                <div className="group relative border-b border-border py-7 last:border-b-0 md:py-8">
+                  <div className="flex items-start gap-5 md:gap-8">
+                    <span className="numeral shrink-0 pt-1 text-[2.5rem] leading-none md:text-[3rem]">
                       {s.n}
                     </span>
-                    <h3 className="font-display text-[1.5rem] leading-tight font-bold tracking-[0.02em] uppercase transition-colors duration-500 group-hover:text-ignition">
-                      {s.title}
-                    </h3>
+                    <div>
+                      <h3 className="font-display text-[1.35rem] font-bold leading-tight tracking-[0.02em] uppercase transition-colors duration-500 group-hover:text-ignition md:text-[1.5rem]">
+                        {s.title}
+                      </h3>
+                      <p className="mt-4 max-w-2xl text-[0.9rem] leading-[1.85] text-muted-foreground">
+                        {s.body}
+                      </p>
+                    </div>
                   </div>
-                  <p className="mt-6 text-[0.9rem] leading-[1.95] text-muted-foreground">
-                    {s.body}
-                  </p>
                 </div>
               </Reveal>
             ))}
           </ol>
+
+          <Reveal delay={420}>
+            <div className="mt-8 grid gap-5 border-t border-border pt-7 sm:grid-cols-3">
+              <div>
+                <p className="eyebrow text-ignition">Clareza</p>
+                <p className="mt-2 text-[0.82rem] leading-[1.7] text-muted-foreground">
+                  Sabe o que está a ser feito.
+                </p>
+              </div>
+              <div>
+                <p className="eyebrow text-ignition">Controlo</p>
+                <p className="mt-2 text-[0.82rem] leading-[1.7] text-muted-foreground">
+                  Aprova antes de avançar.
+                </p>
+              </div>
+              <div>
+                <p className="eyebrow text-ignition">Continuidade</p>
+                <p className="mt-2 text-[0.82rem] leading-[1.7] text-muted-foreground">
+                  O histórico fica registado.
+                </p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

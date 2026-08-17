@@ -1,20 +1,41 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { label: "Método", href: "#metodo" },
   { label: "Serviços", href: "#servicos" },
-  { label: "Processo", href: "#processo" },
-  { label: "Clientes", href: "#clientes" },
+  { label: "O técnico", href: "#quem-sou" },
+  { label: "Como funciona", href: "#como-funciona" },
+  { label: "Avaliações", href: "#avaliacoes" },
   { label: "Dúvidas", href: "#faq" },
 ];
 
 const sectionIds = ["top", ...links.map((l) => l.href.slice(1)), "contacto"];
+const WHATSAPP = "351934587555";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("top");
+  const headerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const updateHeight = () => {
+      document.documentElement.style.setProperty("--nav-height", `${header.getBoundingClientRect().height}px`);
+    };
+
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(header);
+    window.addEventListener("resize", updateHeight);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -54,11 +75,12 @@ export function Nav() {
 
   return (
     <header
+      ref={headerRef}
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,padding,border-color] duration-700",
         open || scrolled
-          ? "border-b border-border bg-obsidian/85 py-3.5 backdrop-blur-xl supports-[backdrop-filter]:bg-obsidian/70"
-          : "border-b border-transparent bg-transparent py-6",
+          ? "border-b border-border bg-obsidian/85 py-5 backdrop-blur-xl supports-[backdrop-filter]:bg-obsidian/70"
+          : "border-b border-transparent bg-transparent py-5",
       )}
     >
       <div className="mx-auto flex max-w-[92rem] items-center justify-between gap-8 px-6 md:px-12">
@@ -107,14 +129,18 @@ export function Nav() {
             +351 934 587 555
           </a>
           <a
-            href="#contacto"
+            href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+              "Olá, preciso de ajuda com um problema informático.",
+            )}`}
+            target="_blank"
+            rel="noreferrer"
             className="btn-ignite hidden px-6 py-3 text-[0.68rem] tracking-[0.22em] whitespace-nowrap uppercase focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ignition sm:inline-block"
           >
-            Pedir Ajuda
+            WhatsApp
           </a>
           <button
             type="button"
-            aria-label="Abrir menu"
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
             className="flex h-10 w-10 flex-col items-center justify-center gap-[6px] text-foreground xl:hidden"
@@ -158,11 +184,15 @@ export function Nav() {
             </a>
           ))}
           <a
-            href="#contacto"
+            href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+              "Olá, preciso de ajuda com um problema informático.",
+            )}`}
+            target="_blank"
+            rel="noreferrer"
             onClick={() => setOpen(false)}
             className="btn-ignite mt-4 px-6 py-4 text-center text-[0.7rem] tracking-[0.22em] uppercase"
           >
-            Pedir Ajuda
+            Falar no WhatsApp
           </a>
         </nav>
       </div>

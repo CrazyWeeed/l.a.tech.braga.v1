@@ -1,104 +1,33 @@
-import { useEffect, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
 
+const facts = [
+  ["20+", "anos de experiência"],
+  ["Braga", "atendimento local"],
+  ["Remoto", "suporte em Portugal"],
+  ["Direto", "fale com o técnico"],
+];
+
 export function Experiencia() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [animateNumbers, setAnimateNumbers] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
-          setTimeout(() => setAnimateNumbers(true), 300);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, [isVisible]);
-
   return (
     <section
       id="experiencia"
-      className="relative scroll-mt-28 bg-obsidian py-24 md:py-32 overflow-hidden"
+      className="relative section-anchor overflow-hidden bg-obsidian py-16 md:py-20"
     >
       <div className="section-seam" aria-hidden />
-      <div
-        ref={containerRef}
-        className="relative z-[2] mx-auto max-w-[92rem] px-6 md:px-12"
-      >
-        <div className="grid gap-12 md:gap-16 lg:grid-cols-3 lg:items-center">
-          {/* 20+ ANOS — CENTER */}
-          <Reveal className="lg:col-span-1 lg:col-start-2">
-            <div className="text-center">
-              <p className="eyebrow text-ignition/60 tracking-widest">Desde</p>
-              <div
-                className={`mt-6 transition-all duration-1000 ease-out ${
-                  animateNumbers
-                    ? "opacity-100 scale-100"
-                    : "opacity-0 scale-90"
-                }`}
-              >
-                <span className="font-display text-[5.5rem] md:text-[7rem] leading-[0.9] font-bold text-ignition">
-                  20+
-                </span>
-                <p className="mt-3 font-display text-[1.3rem] md:text-[1.6rem] leading-tight font-bold tracking-[0.02em] uppercase text-foreground">
-                  Anos
+      <div className="relative z-[2] mx-auto max-w-[92rem] px-6 md:px-12">
+        <div className="grid border-y border-border sm:grid-cols-2 lg:grid-cols-4">
+          {facts.map(([value, label], i) => (
+            <Reveal key={value} delay={i * 90}>
+              <div className="border-b border-border px-6 py-7 last:border-b-0 sm:border-r sm:px-8 sm:py-8 sm:[&:nth-child(2n)]:border-r-0 lg:border-b-0 lg:[&:nth-child(2n)]:border-r lg:[&:last-child]:border-r-0">
+                <p className="font-display text-[2rem] font-bold leading-none tracking-[-0.02em] text-ignition md:text-[2.25rem]">
+                  {value}
+                </p>
+                <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                  {label}
                 </p>
               </div>
-              <p className="mt-6 text-[0.9rem] leading-[1.8] text-foreground/60 max-w-xs mx-auto">
-                A confiar em Braga
-              </p>
-            </div>
-          </Reveal>
-
-          {/* LEFT INFO */}
-          <Reveal delay={160} className="lg:col-span-1 lg:col-start-1">
-            <div className="space-y-8">
-              <div>
-                <p className="text-[0.75rem] uppercase tracking-[0.15em] text-ignition/70 font-bold">
-                  Localidade
-                </p>
-                <p className="mt-3 font-display text-[1.4rem] leading-tight font-bold text-foreground">
-                  Braga
-                </p>
-              </div>
-              <div>
-                <p className="text-[0.75rem] uppercase tracking-[0.15em] text-ignition/70 font-bold">
-                  Atendimento
-                </p>
-                <p className="mt-3 font-display text-[1.4rem] leading-tight font-bold text-foreground">
-                  Local
-                </p>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* RIGHT INFO */}
-          <Reveal delay={320} className="lg:col-span-1 lg:col-start-3">
-            <div className="space-y-8">
-              <div>
-                <p className="text-[0.75rem] uppercase tracking-[0.15em] text-ignition/70 font-bold">
-                  Modalidade
-                </p>
-                <p className="mt-3 font-display text-[1.4rem] leading-tight font-bold text-foreground">
-                  Remoto e Presencial
-                </p>
-              </div>
-              <div>
-                <p className="text-[0.75rem] uppercase tracking-[0.15em] text-ignition/70 font-bold">
-                  Cobertura
-                </p>
-                <p className="mt-3 font-display text-[1.4rem] leading-tight font-bold text-foreground">
-                  Portugal
-                </p>
-              </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

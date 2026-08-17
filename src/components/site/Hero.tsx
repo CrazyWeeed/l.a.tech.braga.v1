@@ -23,16 +23,19 @@ const slides = [
 ];
 
 const DURATION = 6200;
+const WHATSAPP = "351934587555";
 
 export function Hero() {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const layerRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), DURATION);
     return () => clearInterval(id);
-  }, []);
+  }, [paused]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -62,7 +65,11 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-[640px] w-full scroll-mt-28 overflow-hidden bg-obsidian pt-20 lg:h-[94svh] lg:max-h-[980px] lg:pt-0"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+      className="relative min-h-[640px] w-full section-anchor overflow-hidden bg-obsidian pt-[var(--nav-height,5rem)] lg:h-[94svh] lg:max-h-[980px] lg:pt-[var(--nav-height,5rem)]"
     >
       <div
         ref={layerRef}
@@ -111,7 +118,7 @@ export function Hero() {
 
       <div
         ref={contentRef}
-        className="relative z-10 mx-auto flex h-full max-w-[92rem] flex-col justify-end px-6 pt-36 pb-14 will-change-transform md:px-12 md:pb-16 lg:justify-center lg:pt-28 lg:pb-12"
+        className="relative z-10 mx-auto flex h-full max-w-[92rem] flex-col justify-end px-6 pt-12 pb-10 will-change-transform md:px-12 md:pb-12 lg:justify-center lg:pt-8 lg:pb-8"
       >
         <div className="max-w-3xl">
           <p
@@ -134,17 +141,21 @@ export function Hero() {
           >
             Suporte técnico remoto e ao domicílio, manutenção, redes, sistemas e
             Microsoft 365. Para pessoas e pequenos negócios que precisam de voltar
-            ao trabalho — hoje, não para a semana.
+            ao trabalho o mais depressa possível.
           </p>
           <div
             className="mt-10 flex animate-[fade-in_1.4s_cubic-bezier(0.22,1,0.36,1)_both] flex-wrap items-center gap-5"
             style={{ animationDelay: "720ms" }}
           >
             <a
-              href="tel:+351934587555"
+              href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+                "Olá, preciso de ajuda com um problema informático.",
+              )}`}
+              target="_blank"
+              rel="noreferrer"
               className="btn-ignite px-9 py-4 text-[0.72rem] tracking-[0.24em] uppercase"
             >
-              Ligar Agora
+              Falar no WhatsApp
             </a>
             <a
               href="#contacto"
@@ -164,7 +175,7 @@ export function Hero() {
                 type="button"
                 aria-label={`Ver imagem ${i + 1}`}
                 onClick={() => setIndex(i)}
-                className="group py-3"
+                className="group py-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ignition"
               >
                 <span
                   className={cn(

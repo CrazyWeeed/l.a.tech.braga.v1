@@ -10,11 +10,11 @@ const services = [
     sub: "Remoto · Presencial · Braga",
     image: servico1,
     alt: "Manutenção de portátil — abertura e diagnóstico de componentes internos",
-    body: "O computador não arranca, arrasta-se ou dá erro a meio do trabalho. Diagnóstico feito à distância quando é possível e no local quando é preciso ter as mãos na máquina.",
+    body: "Computador lento, a bloquear ou que deixou de arrancar. Primeiro percebe-se o problema; depois decide-se se é melhor resolver remotamente ou ir até ao equipamento.",
     points: [
-      "Acesso remoto no próprio dia",
+      "Acesso remoto quando é possível",
       "Deslocação a casa ou escritório",
-      "Diagnóstico com relatório do que falhou",
+      "Explicação do que foi encontrado",
     ],
   },
   {
@@ -23,7 +23,7 @@ const services = [
     sub: "Router · Switch · Cobertura",
     image: servico2,
     alt: "Instalação de cabos ethernet em switch de rede profissional",
-    body: "Internet que cai, zonas da casa sem sinal, cabos improvisados. Rede desenhada para o espaço real, com equipamento adequado e configuração que se aguenta sozinha.",
+    body: "Wi-Fi fraco, internet a cair ou zonas da casa sem sinal. A rede é ajustada ao espaço real, com configuração estável e segura.",
     points: [
       "Configuração de router e repetidores",
       "Cablagem e pontos de rede",
@@ -36,7 +36,7 @@ const services = [
     sub: "Microsoft 365 · Postos de trabalho",
     image: servico3,
     alt: "Manutenção e reparação de servidor — montagem de componentes de hardware",
-    body: "Para negócios pequenos que não têm departamento de informática — e não precisam de ter. Contas, emails, partilha de ficheiros, impressoras e cópias de segurança a funcionar sem drama.",
+    body: "Para pequenos negócios sem departamento de informática. Contas, email, Microsoft 365, impressoras, postos de trabalho e backups tratados num único ponto de contacto.",
     points: [
       "Microsoft 365 e email profissional",
       "Preparação de novos postos de trabalho",
@@ -60,7 +60,7 @@ export function Servicos() {
   return (
     <section
       id="servicos"
-      className="carbon-weave depth-ignite relative scroll-mt-28 bg-obsidian py-28 md:py-40"
+      className="carbon-weave depth-ignite relative section-anchor bg-obsidian py-20 md:py-24"
     >
       <div className="section-seam" aria-hidden />
       <div className="relative z-[2] mx-auto max-w-[92rem] px-6 md:px-12">
@@ -80,12 +80,11 @@ export function Servicos() {
           </Reveal>
         </div>
 
-        <div className="mt-20 grid gap-10 md:mt-28 lg:grid-cols-3 lg:gap-8">
+        <div className="mt-14 grid gap-8 md:mt-16 lg:grid-cols-3 lg:gap-8">
           {services.map((s, i) => (
             <Reveal
               key={s.title}
               delay={260 + i * 160}
-              className={i === 1 ? "lg:mt-14" : i === 2 ? "lg:mt-7" : undefined}
             >
               <article className="card-pad card-quiet group flex h-full flex-col border border-border bg-steel/50 backdrop-blur-[2px] hover:border-ignition/40 hover:bg-steel">
                 <div className="img-breathe relative aspect-[5/4] overflow-hidden shadow-soft">
@@ -123,9 +122,9 @@ export function Servicos() {
         </div>
 
         <Reveal delay={200}>
-          <div className="mt-20 border-t border-border pt-12">
+          <div className="mt-14 border-t border-border pt-10">
             <p className="eyebrow text-muted-foreground">Também se resolve</p>
-            <ul className="mt-8 grid gap-x-10 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="mt-7 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
               {outros.map((o) => (
                 <li
                   key={o}
