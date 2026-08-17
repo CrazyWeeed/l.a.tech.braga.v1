@@ -1,12 +1,11 @@
 import { Reveal } from "./Reveal";
-import aproximacaoImg from "@/assets/aproximacao.jpg";
 
 export function Aproximacao() {
   return (
     <section id="abordagem" className="relative scroll-mt-28 bg-carbon py-24 md:py-32">
       <div className="relative z-[2] mx-auto max-w-[92rem] px-6 md:px-12">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24 lg:items-center">
-          {/* Conteúdo */}
+          {/* Conteúdo ONLY */}
           <Reveal>
             <div>
               <p className="eyebrow text-ignition">Abordagem</p>
@@ -50,20 +49,6 @@ export function Aproximacao() {
                   </div>
                 </div>
               </div>
-            </div>
-          </Reveal>
-
-          {/* Foto */}
-          <Reveal delay={160}>
-            <div className="img-breathe relative aspect-[4/5] overflow-hidden shadow-feature">
-              <img
-                src={aproximacaoImg}
-                alt="Suporte técnico humanizado — explicação clara ao cliente"
-                width={800}
-                height={1000}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
             </div>
           </Reveal>
         </div>

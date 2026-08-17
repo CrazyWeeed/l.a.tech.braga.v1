@@ -8,14 +8,17 @@ const slides = [
   {
     src: slide1,
     alt: "L.A. Tech Braga — Logo e identidade",
+    tagline: "Precisão em tudo que fazemos",
   },
   {
     src: slide2,
     alt: "Técnico mexendo em desktop — reparação e diagnóstico",
+    tagline: "Problema resolvido. Ponto.",
   },
   {
     src: slide3,
     alt: "Suporte humanizado — técnico com cliente idoso",
+    tagline: "Confiança que se vê e se sente",
   },
 ];
 
@@ -178,7 +181,7 @@ export function Hero() {
             key={index}
             className="hidden max-w-md animate-[fade-in_1.2s_cubic-bezier(0.22,1,0.36,1)_both] text-right text-[0.95rem] leading-[1.7] font-medium text-foreground/60 sm:block"
           >
-            {slides[index]?.alt}
+            {slides[index]?.tagline}
           </p>
         </div>
       </div>

@@ -60,11 +60,13 @@ export function ProvaSocial() {
         </Reveal>
 
         <div className="relative mt-16 overflow-hidden md:mt-20">
-          <div className="flex gap-6 transition-transform duration-700 ease-out">
+          <div className="flex gap-6 transition-all duration-700 ease-in-out">
             {visible.map((t, i) => (
               <article
                 key={`${t.name}-${index}-${i}`}
-                className="card-pad card-quiet min-w-full border border-border bg-steel/50 backdrop-blur-[2px] sm:min-w-[calc(50%-0.75rem)] lg:min-w-[calc(33.333%-1rem)]"
+                className={`card-pad card-quiet min-w-full border border-border bg-steel/50 backdrop-blur-[2px] sm:min-w-[calc(50%-0.75rem)] lg:min-w-[calc(33.333%-1rem)] transition-opacity duration-700 ${
+                  i === 0 ? "opacity-100" : "opacity-0 absolute"
+                }`}
               >
                 <div className="mb-6 flex gap-1">
                   {Array.from({ length: t.rating }).map((_, j) => (
