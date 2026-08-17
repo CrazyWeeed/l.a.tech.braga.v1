@@ -31,12 +31,7 @@ const schemaOrg = {
   },
   "areaServed": "Braga",
   "priceRange": "€",
-  "serviceType": ["Suporte Técnico Informático", "Reparação de Computadores", "Instalação de Redes", "Microsoft 365"],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "7"
-  }
+  "serviceType": ["Suporte Técnico Informático", "Reparação de Computadores", "Instalação de Redes", "Microsoft 365"]
 };
 
 export const Route = createFileRoute("/")({
@@ -48,7 +43,7 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "keywords", content: "informática Braga, reparação computadores, técnico suporte, redes, Microsoft 365" },
+      { name: "keywords", content: "técnico informática Braga, suporte técnico, reparação PC, redes Wi-Fi, Microsoft 365, assistência informática, diagnóstico computador" },
       { name: "author", content: "L.A. Tech Braga" },
     ],
     scripts: [
@@ -69,6 +64,7 @@ function Index() {
         <Hero />
         <QuemSou />
         <Metodo />
+        <Aproximacao />
         <Servicos />
         <ProvaSocial />
         <Processo />

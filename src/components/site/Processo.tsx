@@ -56,12 +56,15 @@ export function Processo() {
           <ol className="space-y-px border border-border bg-border">
             {steps.map((s, i) => (
               <Reveal key={s.n} delay={140 + i * 150} as="li">
-                <div className="card-pad card-quiet group bg-carbon hover:bg-steel">
+                <div className="card-pad card-quiet group relative bg-carbon hover:bg-steel overflow-hidden">
+                  {/* Progress bar */}
+                  <div className="absolute top-0 left-0 h-1 bg-ignition transition-all duration-500 group-hover:w-full" style={{ width: `${((i + 1) / steps.length) * 100}%` }} />
+                  
                   <div className="flex items-baseline gap-6">
-                    <span className="numeral text-[3.5rem] transition-colors duration-700 group-hover:text-ignition/20">
+                    <span className="numeral text-[3.5rem] font-bold transition-all duration-500 group-hover:text-ignition group-hover:scale-110 origin-left">
                       {s.n}
                     </span>
-                    <h3 className="font-display text-[1.5rem] leading-tight font-bold tracking-[0.02em] uppercase">
+                    <h3 className="font-display text-[1.5rem] leading-tight font-bold tracking-[0.02em] uppercase transition-colors duration-500 group-hover:text-ignition">
                       {s.title}
                     </h3>
                   </div>

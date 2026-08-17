@@ -138,16 +138,16 @@ export function Hero() {
             style={{ animationDelay: "720ms" }}
           >
             <a
-              href="#contacto"
+              href="tel:+351934587555"
               className="btn-ignite px-9 py-4 text-[0.72rem] tracking-[0.24em] uppercase"
             >
-              Descrever o problema
+              Ligar Agora
             </a>
             <a
-              href="tel:+351934587555"
+              href="#contacto"
               className="btn-wash border-2 border-foreground/30 px-9 py-4 text-[0.72rem] tracking-[0.24em] uppercase text-foreground hover:border-foreground hover:text-obsidian"
             >
-              <span className="relative z-10">Ligar Agora</span>
+              <span className="relative z-10">Descrever o Problema</span>
               <span className="btn-wash-fill bg-foreground" />
             </a>
           </div>
