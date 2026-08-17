@@ -45,12 +45,12 @@ export function Faq() {
         </Reveal>
 
         <div className="lg:col-span-7 lg:col-start-6">
-          <dl className="border-t border-border">
+          <dl className="border-t border-border" itemScope itemType="https://schema.org/FAQPage">
             {faqs.map((f, i) => {
               const isOpen = open === i;
               return (
                 <Reveal key={f.q} delay={80 + i * 70}>
-                  <div className="border-b border-border">
+                  <div className="border-b border-border" itemScope itemType="https://schema.org/Question">
                     <dt>
                       <button
                         type="button"
@@ -58,7 +58,7 @@ export function Faq() {
                         aria-expanded={isOpen}
                         className="flex w-full items-center justify-between gap-8 py-7 text-left transition-colors duration-500 hover:text-ignition"
                       >
-                        <span className="font-display text-[1.1rem] font-bold tracking-[0.03em] uppercase md:text-[1.25rem]">
+                        <span className="font-display text-[1.1rem] font-bold tracking-[0.03em] uppercase md:text-[1.25rem]" itemProp="name">
                           {f.q}
                         </span>
                         <span
@@ -81,8 +81,10 @@ export function Faq() {
                         "overflow-hidden transition-[max-height,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
                         isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0",
                       )}
+                      itemScope
+                      itemType="https://schema.org/Answer"
                     >
-                      <p className="pb-8 text-[0.92rem] leading-[1.95] text-muted-foreground">
+                      <p className="pb-8 text-[0.92rem] leading-[1.95] text-muted-foreground" itemProp="text">
                         {f.a}
                       </p>
                     </dd>

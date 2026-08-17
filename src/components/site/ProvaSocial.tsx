@@ -47,7 +47,7 @@ export function ProvaSocial() {
   const visible = [0, 1, 2].map((offset) => testimonials[(index + offset) % testimonials.length]);
 
   return (
-    <section className="carbon-weave depth-dark relative scroll-mt-28 bg-obsidian py-24 md:py-32">
+    <section id="avaliacoes" className="carbon-weave depth-dark relative scroll-mt-28 bg-obsidian py-24 md:py-32">
       <div className="section-seam" aria-hidden />
       <div className="relative z-[2] mx-auto max-w-[92rem] px-6 md:px-12">
         <Reveal>

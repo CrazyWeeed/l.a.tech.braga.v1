@@ -16,6 +16,29 @@ const title = "L.A. Tech Braga — Especialista em Informática e Suporte Técni
 const description =
   "Assistência informática em Braga para pessoas e pequenos negócios: reparação, redes, Microsoft 365 e recuperação de dados. diagnóstico e suporte remoto ou ao domicílio.";
 
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "L.A. Tech Braga",
+  "description": description,
+  "url": "https://latechbraga.pt",
+  "telephone": "+351934587555",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Braga",
+    "addressRegion": "Braga",
+    "addressCountry": "PT"
+  },
+  "areaServed": "Braga",
+  "priceRange": "€",
+  "serviceType": ["Suporte Técnico Informático", "Reparação de Computadores", "Instalação de Redes", "Microsoft 365"],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "7"
+  }
+};
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -25,6 +48,14 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "keywords", content: "informática Braga, reparação computadores, técnico suporte, redes, Microsoft 365" },
+      { name: "author", content: "L.A. Tech Braga" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        textContent: JSON.stringify(schemaOrg),
+      },
     ],
   }),
   component: Index,

@@ -3,7 +3,7 @@ import quemSouPhoto from "@/assets/quem-sou.jpg";
 
 export function QuemSou() {
   return (
-    <section className="relative bg-carbon py-24 md:py-32">
+    <section id="quem-sou" className="relative scroll-mt-28 bg-carbon py-24 md:py-32">
       <div className="relative z-[2] mx-auto max-w-[92rem] px-6 md:px-12">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24 lg:items-center">
           {/* Foto */}
