@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import slide1 from "@/assets/hero-slide-1.jpg";
+import slide1Mobile from "@/assets/hero-mobile-1.jpg";
 import slide2 from "@/assets/hero-slide-2.jpg";
 import slide3 from "@/assets/hero-slide-3.jpg";
 
-const slides = [
+const getSlides = (isMobile: boolean) => [
   {
-    src: slide1,
+    src: isMobile ? slide1Mobile : slide1,
     alt: "L.A. Tech Braga — Logo e identidade",
     tagline: "Precisão em tudo que fazemos",
   },
@@ -28,14 +29,27 @@ const WHATSAPP = "351934587555";
 export function Hero() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const layerRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
+
+  // Detectar mobile no mount e em resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const slides = getSlides(isMobile);
 
   useEffect(() => {
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), DURATION);
     return () => clearInterval(id);
-  }, [paused]);
+  }, [paused, slides.length]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
