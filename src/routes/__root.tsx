@@ -77,16 +77,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-  { name: "google-site-verification", content: "Z0-_s70uTvSTeuKBvDD_flm1jdXuA3LtnnwV9rImA80" },
-      { title: "L.A. Tech Braga — Especialista em Informática" },
-      { name: "description", content: "Assistência informática em Braga: reparação, redes, Microsoft 365 e recuperação de dados, remoto ou ao domicílio." },
+      { name: "google-site-verification", content: "Z0-_s70uTvSTeuKBvDD_flm1jdXuA3LtnnwV9rImA80" },
       { name: "author", content: "L.A. Tech Braga" },
-      { property: "og:title", content: "L.A. Tech Braga — Especialista em Informática" },
-      { property: "og:description", content: "Assistência informática em Braga: reparação, redes, Microsoft 365 e recuperação de dados." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "L.A. Tech Braga — Especialista em Informática" },
-      { name: "twitter:description", content: "Assistência informática em Braga: reparação, redes, Microsoft 365 e recuperação de dados." },
+      { name: "theme-color", content: "#0b0b0d" },
     ],
     links: [
       {
