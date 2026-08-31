@@ -1,13 +1,12 @@
 import { Reveal } from "./Reveal";
-import servico1 from "@/assets/servico-1.webp";
-import servico2 from "@/assets/servico-2.webp";
+import servico1 from "@/assets/servico-1.jpg";
+import servico2 from "@/assets/servico-2.jpg";
 import servico3 from "@/assets/bench.jpg";
 
 const services = [
   {
     n: "I",
-    title: "Reparação de Computadores",
-    href: "/reparacao-computadores-braga",
+    title: "Suporte Técnico",
     sub: "Remoto · Presencial · Braga",
     image: servico1,
     alt: "Manutenção de portátil — abertura e diagnóstico de componentes internos",
@@ -21,7 +20,6 @@ const services = [
   {
     n: "II",
     title: "Redes e Wi-Fi",
-    href: "/redes-wifi-braga",
     sub: "Router · Switch · Cobertura",
     image: servico2,
     alt: "Instalação de cabos ethernet em switch de rede profissional",
@@ -35,7 +33,6 @@ const services = [
   {
     n: "III",
     title: "Apoio a Empresas",
-    href: "/apoio-empresas-braga",
     sub: "Microsoft 365 · Postos de trabalho",
     image: servico3,
     alt: "Manutenção e reparação de servidor — montagem de componentes de hardware",
@@ -50,7 +47,6 @@ const services = [
 
 const outros = [
   "Manutenção e limpeza de computadores",
-  "Diagnóstico de hardware e motherboards",
   "Instalação e configuração de sistemas",
   "Formatação com cópia de dados",
   "Remoção de vírus e otimização",
@@ -95,8 +91,8 @@ export function Servicos() {
                   <img
                     src={s.image}
                     alt={s.alt}
-                    width={s === services[2] ? 1600 : 900}
-                    height={s === services[2] ? 1008 : 1124}
+                    width={1600}
+                    height={1008}
                     loading="lazy"
                     className="h-full w-full object-cover"
                   />
@@ -105,16 +101,8 @@ export function Servicos() {
                   </span>
                 </div>
                 <h3 className="font-display mt-8 text-[1.65rem] leading-tight font-bold tracking-[0.01em] uppercase">
-                  <a href={s.href} className="transition-colors hover:text-ignition">
-                    {s.title}
-                  </a>
+                  {s.title}
                 </h3>
-                <a
-                  href={s.href}
-                  className="mt-4 inline-flex w-fit text-[0.68rem] font-semibold tracking-[0.2em] uppercase text-ignition hover:text-foreground"
-                >
-                  Ver serviço
-                </a>
                 <p className="eyebrow mt-3 text-ignition">{s.sub}</p>
                 <p className="mt-6 text-[0.88rem] leading-[1.95] text-muted-foreground">{s.body}</p>
                 <ul className="mt-9 space-y-4 border-t border-border pt-7">
@@ -135,19 +123,6 @@ export function Servicos() {
 
         <Reveal delay={200}>
           <div className="mt-14 border-t border-border pt-10">
-            <p className="eyebrow text-muted-foreground">Serviços em destaque</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href="/reparacao-computadores-braga" className="text-[0.78rem] font-semibold tracking-[0.08em] uppercase text-foreground/80 transition-colors hover:text-ignition">Reparação de computadores</a>
-              <a href="/reparacao-portateis-braga" className="text-[0.78rem] font-semibold tracking-[0.08em] uppercase text-foreground/80 transition-colors hover:text-ignition">Reparação de portáteis</a>
-              <a href="/reparacao-hardware-braga" className="text-[0.78rem] font-semibold tracking-[0.08em] uppercase text-foreground/80 transition-colors hover:text-ignition">Motherboards e hardware</a>
-              <a href="/redes-wifi-braga" className="text-[0.78rem] font-semibold tracking-[0.08em] uppercase text-foreground/80 transition-colors hover:text-ignition">Redes e Wi-Fi</a>
-              <a href="/apoio-empresas-braga" className="text-[0.78rem] font-semibold tracking-[0.08em] uppercase text-foreground/80 transition-colors hover:text-ignition">Apoio a empresas</a>
-            </div>
-          </div>
-        </Reveal>
-
-        <Reveal delay={200}>
-          <div className="mt-10 border-t border-border pt-10">
             <p className="eyebrow text-muted-foreground">Também se resolve</p>
             <ul className="mt-7 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
               {outros.map((o) => (
