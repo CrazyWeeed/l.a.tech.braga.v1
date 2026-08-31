@@ -20,7 +20,7 @@ export function Aproximacao() {
             <div>
               <p className="max-w-2xl text-[1rem] leading-[1.9] text-foreground/85">
                 Explico o que encontrei, o que precisa de ser feito e porquê — sem
-                jargão desnecessário. Não precisa perceber de informática para
+                jargão desnecessário. Você não precisa perceber de informática para
                 perceber o que está a pagar.
               </p>
 
@@ -28,7 +28,7 @@ export function Aproximacao() {
                 <div>
                   <p className="font-semibold text-foreground">Atendimento paciente</p>
                   <p className="mt-2 text-[0.86rem] leading-[1.75] text-muted-foreground">
-                    Sem pressa e sem o deixar perdido.
+                    Sem pressa e sem fazer você se sentir perdido.
                   </p>
                 </div>
                 <div>
@@ -38,7 +38,7 @@ export function Aproximacao() {
                   </p>
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground">Contacto direto</p>
+                  <p className="font-semibold text-foreground">Contato direto</p>
                   <p className="mt-2 text-[0.86rem] leading-[1.75] text-muted-foreground">
                     Fale diretamente com quem está a tratar do problema.
                   </p>

@@ -52,7 +52,7 @@ export function QuemSou() {
               </p>
             </div>
             <div className="px-6 py-6 sm:px-8">
-              <p className="font-semibold text-foreground">Contacto direto</p>
+              <p className="font-semibold text-foreground">Contato direto</p>
               <p className="mt-2 text-[0.84rem] leading-[1.7] text-muted-foreground">
                 Fale diretamente com quem está a tratar do problema.
               </p>
