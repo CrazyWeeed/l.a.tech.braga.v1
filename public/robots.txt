@@ -1,23 +1,4 @@
-# L.A. Tech Braga — all public content is crawlable.
 User-agent: *
-Allow: /
-
-# Explicitly allow major search and AI crawlers.
-User-agent: Googlebot
-Allow: /
-User-agent: Bingbot
-Allow: /
-User-agent: GPTBot
-Allow: /
-User-agent: OAI-SearchBot
-Allow: /
-User-agent: ChatGPT-User
-Allow: /
-User-agent: ClaudeBot
-Allow: /
-User-agent: PerplexityBot
-Allow: /
-User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://www.la-tech.pt/sitemap.xml
