@@ -1,13 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import slide1 from "@/assets/hero-slide-1.jpg";
-import slide1Mobile from "@/assets/hero-mobile-1.jpg";
+import slide1 from "@/assets/hero-slide-1.webp";
+import slide1Mobile from "@/assets/hero-mobile-1.webp";
 import slide2 from "@/assets/hero-slide-2.jpg";
-import slide3 from "@/assets/hero-slide-3.jpg";
+import slide3 from "@/assets/hero-slide-3.webp";
 
-const getSlides = (isMobile: boolean) => [
+type HeroSlide = {
+  src: string;
+  mobileSrc?: string;
+  alt: string;
+  tagline: string;
+};
+
+const getSlides = (): HeroSlide[] => [
   {
-    src: isMobile ? slide1Mobile : slide1,
+    src: slide1,
+    mobileSrc: slide1Mobile,
     alt: "L.A. Tech Braga — Logo e identidade",
     tagline: "Precisão em tudo que fazemos",
   },
@@ -29,21 +37,10 @@ const WHATSAPP = "351934587555";
 export function Hero() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const layerRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
 
-  // Detectar mobile no mount e em resize
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const slides = getSlides(isMobile);
+  const slides = getSlides();
 
   useEffect(() => {
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -98,18 +95,36 @@ export function Hero() {
               i === index ? "opacity-100" : "opacity-0",
             )}
           >
-            <img
-              src={slide.src}
-              alt={slide.alt}
-              width={1600}
-              height={1008}
-              loading={i === 0 ? "eager" : "lazy"}
-              fetchPriority={i === 0 ? "high" : "low"}
-              className={cn(
-                cn("h-full w-full transition-transform ease-linear", i === 0 ? "object-contain" : "object-cover"),
-                i === index ? (i === 0 ? "scale-100 duration-[8500ms]" : "scale-[1.08] duration-[8500ms]") : "scale-100 duration-0",
-              )}
-            />
+            {i === 0 ? (
+              <picture>
+                <source media="(max-width: 768px)" srcSet={slide.mobileSrc} />
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  width={1920}
+                  height={1024}
+                  loading="eager"
+                  fetchPriority="high"
+                  className={cn(
+                    "h-full w-full object-contain transition-transform ease-linear",
+                    i === index ? "scale-100 duration-[8500ms]" : "scale-100 duration-0",
+                  )}
+                />
+              </picture>
+            ) : (
+              <img
+                src={slide.src}
+                alt={slide.alt}
+                width={i === 1 ? 1600 : 1376}
+                height={i === 1 ? 1008 : 768}
+                loading="lazy"
+                fetchPriority="low"
+                className={cn(
+                  "h-full w-full object-cover transition-transform ease-linear",
+                  i === index ? "scale-[1.08] duration-[8500ms]" : "scale-100 duration-0",
+                )}
+              />
+            )}
           </div>
         ))}
       </div>
@@ -145,17 +160,15 @@ export function Hero() {
             className="font-display animate-[fade-in_1.4s_cubic-bezier(0.22,1,0.36,1)_both] text-[clamp(2.05rem,4.6vw,4.1rem)] leading-[0.98] font-bold tracking-[-0.015em] uppercase"
             style={{ animationDelay: "320ms" }}
           >
-            Quem percebe do assunto
-            <span className="block text-ignition">resolve mais depressa</span>
-            <span className="block text-foreground/85">e explica em português.</span>
+            Reparação de computadores e portáteis em Braga
+            <span className="block text-ignition">com diagnóstico antes de mexer.</span>
+            <span className="block text-foreground/85">Quem percebe do assunto resolve mais depressa e explica em português.</span>
           </h1>
           <p
             className="mt-8 max-w-xl animate-[fade-in_1.4s_cubic-bezier(0.22,1,0.36,1)_both] text-[1rem] leading-[1.85] text-foreground/70"
             style={{ animationDelay: "540ms" }}
           >
-            Suporte técnico remoto e ao domicílio, manutenção, redes, sistemas e
-            Microsoft 365. Para pessoas e pequenos negócios que precisam de voltar
-            ao trabalho o mais depressa possível.
+            Assistência informática em Braga para pessoas e pequenos negócios: suporte remoto e ao domicílio, manutenção, redes, sistemas e Microsoft 365.
           </p>
           <div
             className="mt-10 flex animate-[fade-in_1.4s_cubic-bezier(0.22,1,0.36,1)_both] flex-wrap items-center gap-5"

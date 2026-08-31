@@ -9,11 +9,11 @@ const faqs = [
   },
   {
     q: "Quanto custa um diagnóstico?",
-    a: "A visita técnica tem custo. Antes de qualquer reparo ou intervenção, é explicado o que está acontecendo e o valor do serviço, e nada avança sem a sua aprovação.",
+    a: "A visita técnica tem custo. Antes de qualquer intervenção, é explicado o que está a acontecer e o valor do serviço, e nada avança sem a sua aprovação.",
   },
   {
     q: "Perco os meus ficheiros numa formatação?",
-    a: "Não. A cópia dos dados é sempre o primeiro passo, mesmo quando o sistema já não arranca. Só se formata depois de confirmar que está tudo salvaguardado.",
+    a: "Não necessariamente. Quando a situação o permite, os dados são salvaguardados antes da formatação. Só se avança depois de confirmar o que precisa de ficar preservado.",
   },
   {
     q: "Também apoia empresas pequenas?",
@@ -45,12 +45,12 @@ export function Faq() {
         </Reveal>
 
         <div className="lg:col-span-7 lg:col-start-6">
-          <dl className="border-t border-border" itemScope itemType="https://schema.org/FAQPage">
+          <dl className="border-t border-border">
             {faqs.map((f, i) => {
               const isOpen = open === i;
               return (
                 <Reveal key={f.q} delay={80 + i * 70}>
-                  <div className="border-b border-border" itemScope itemType="https://schema.org/Question">
+                  <div className="border-b border-border">
                     <dt>
                       <button
                         type="button"
@@ -58,7 +58,7 @@ export function Faq() {
                         aria-expanded={isOpen}
                         className="flex w-full items-center justify-between gap-8 py-6 text-left transition-colors duration-500 hover:text-ignition"
                       >
-                        <span className="font-display text-[1.1rem] font-bold tracking-[0.03em] uppercase md:text-[1.25rem]" itemProp="name">
+                        <span className="font-display text-[1.1rem] font-bold tracking-[0.03em] uppercase md:text-[1.25rem]">
                           {f.q}
                         </span>
                         <span
@@ -81,10 +81,8 @@ export function Faq() {
                         "overflow-hidden transition-[max-height,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
                         isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0",
                       )}
-                      itemScope
-                      itemType="https://schema.org/Answer"
                     >
-                      <p className="pb-7 text-[0.92rem] leading-[1.95] text-muted-foreground" itemProp="text">
+                      <p className="pb-7 text-[0.92rem] leading-[1.95] text-muted-foreground">
                         {f.a}
                       </p>
                     </dd>
