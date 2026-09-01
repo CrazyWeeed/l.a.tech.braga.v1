@@ -29,11 +29,31 @@ const faqs = [
   },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a,
+    },
+  })),
+};
+
 export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
     <section id="faq" className="depth-dark relative section-anchor bg-carbon py-20 md:py-24">
+      {/* Invisible to visitors, read by Googlebot: mirrors the accordion content below so
+          the FAQ answers are indexable even though they're hidden (max-h-0/opacity-0) until opened. */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="section-seam" aria-hidden />
       <div className="relative z-[2] mx-auto grid max-w-[92rem] gap-12 px-6 md:px-12 lg:grid-cols-12 lg:gap-20">
         <Reveal className="lg:col-span-4">
@@ -45,12 +65,17 @@ export function Faq() {
         </Reveal>
 
         <div className="lg:col-span-7 lg:col-start-6">
-          <dl className="border-t border-border">
+          <dl className="border-t border-border" itemScope itemType="https://schema.org/FAQPage">
             {faqs.map((f, i) => {
               const isOpen = open === i;
               return (
                 <Reveal key={f.q} delay={80 + i * 70}>
-                  <div className="border-b border-border">
+                  <div
+                    className="border-b border-border"
+                    itemScope
+                    itemProp="mainEntity"
+                    itemType="https://schema.org/Question"
+                  >
                     <dt>
                       <button
                         type="button"
@@ -58,7 +83,10 @@ export function Faq() {
                         aria-expanded={isOpen}
                         className="flex w-full items-center justify-between gap-8 py-6 text-left transition-colors duration-500 hover:text-ignition"
                       >
-                        <span className="font-display text-[1.1rem] font-bold tracking-[0.03em] uppercase md:text-[1.25rem]">
+                        <span
+                          itemProp="name"
+                          className="font-display text-[1.1rem] font-bold tracking-[0.03em] uppercase md:text-[1.25rem]"
+                        >
                           {f.q}
                         </span>
                         <span
@@ -77,12 +105,15 @@ export function Faq() {
                       </button>
                     </dt>
                     <dd
+                      itemScope
+                      itemProp="acceptedAnswer"
+                      itemType="https://schema.org/Answer"
                       className={cn(
                         "overflow-hidden transition-[max-height,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
                         isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0",
                       )}
                     >
-                      <p className="pb-7 text-[0.92rem] leading-[1.95] text-muted-foreground">
+                      <p itemProp="text" className="pb-7 text-[0.92rem] leading-[1.95] text-muted-foreground">
                         {f.a}
                       </p>
                     </dd>

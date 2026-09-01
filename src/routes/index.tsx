@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { createSeoHead, SITE_URL } from "@/lib/seo";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 import { Experiencia } from "@/components/site/Experiencia";
@@ -34,28 +35,27 @@ const schemaOrg = {
 };
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.la-tech.pt/" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "keywords", content: "técnico informática Braga, suporte técnico, reparação PC, redes Wi-Fi, Microsoft 365, assistência informática, diagnóstico computador" },
-      { name: "author", content: "L.A. Tech Braga" },
-    ],
-    links: [
-      { rel: "canonical", href: "https://www.la-tech.pt/" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        textContent: JSON.stringify(schemaOrg),
-      },
-    ],
-  }),
+  head: () => {
+    const base = createSeoHead({
+      title,
+      description,
+      canonical: `${SITE_URL}/`,
+    });
+    return {
+      ...base,
+      meta: [
+        ...base.meta,
+        { name: "keywords", content: "técnico informática Braga, suporte técnico, reparação PC, redes Wi-Fi, Microsoft 365, assistência informática, diagnóstico computador" },
+        { name: "author", content: "L.A. Tech Braga" },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          textContent: JSON.stringify(schemaOrg),
+        },
+      ],
+    };
+  },
   component: Index,
 });
 
