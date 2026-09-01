@@ -106,7 +106,13 @@ export function Hero() {
               loading={i === 0 ? "eager" : "lazy"}
               fetchPriority={i === 0 ? "high" : "low"}
               className={cn(
-                cn("h-full w-full transition-transform ease-linear", i === 0 ? "object-contain" : "object-cover"),
+                cn(
+                  "h-full w-full transition-transform ease-linear",
+                  i === 0 ? "object-contain" : "object-cover",
+                  // Filtro geral aplicado às 3 imagens do carrossel: -30% de brilho,
+                  // para escurecer o fundo do hero de forma consistente.
+                  "brightness-[0.7] contrast-[1.08] saturate-[0.92]",
+                ),
                 i === index ? (i === 0 ? "scale-100 duration-[8500ms]" : "scale-[1.08] duration-[8500ms]") : "scale-100 duration-0",
               )}
             />
@@ -118,14 +124,14 @@ export function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, oklch(0.09 0.002 264 / 0.88) 0%, oklch(0.09 0.002 264 / 0.55) 34%, oklch(0.09 0.002 264 / 0.66) 66%, oklch(0.09 0.002 264 / 0.95) 100%)",
+            "linear-gradient(180deg, oklch(0.09 0.002 264 / 0.92) 0%, oklch(0.09 0.002 264 / 0.74) 34%, oklch(0.09 0.002 264 / 0.8) 66%, oklch(0.09 0.002 264 / 0.97) 100%)",
         }}
       />
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(110% 80% at 82% 14%, oklch(0.685 0.195 41 / 0.18) 0%, transparent 60%)",
+            "radial-gradient(110% 80% at 82% 14%, oklch(0.685 0.195 41 / 0.16) 0%, transparent 60%)",
         }}
       />
       <div className="machined absolute inset-0" />

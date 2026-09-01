@@ -1,51 +1,60 @@
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Reveal } from "./Reveal";
+import { LaserStars } from "./LaserStars";
 
 const testimonials = [
   {
     name: "Maria Tereza Farias Ferreira",
     when: "há um mês",
     text: "Muito bom atendimento do Luís Albuquerque. Com a sua calma no tratamento dos dados e a sua competência informática ela deixa o cliente completamente satisfeito. O seu contato guardei no meu WhatsApp para uma próxima vez!",
-    rating: 5,
   },
   {
     name: "Flávia",
     when: "há 2 semanas",
-    text: "Serviço excelente, profissional, pessoa confiável, gentil e prestativa, muito solícito e disposto a atender às suas necessidades técnicas e logísticas. Apesar de ser fim de semana, ele consertou imediatamente o meu laptop que estava inoperante há 5 dias devido a danos causados por água, quando nem mesmo o LED funcionava. Só tenho gratidão pelo serviço e por como ele conseguiu reviver, restaurar e limpar o meu laptop (tanto por dentro como por fora) e pela paciência em consertá-lo, dando o seu melhor para que tudo desse certo. Obrigado!",
-    rating: 5,
+    text: "Serviço excelente, profissional, pessoa confiável, gentil e prestativa, muito solícito e disposto a atender às suas necessidades técnicas e logísticas. Apesar de ser fim de semana, ele consertou imediatamente o meu laptop que estava inoperante há 5 dias devido a danos causados por água, quando nem mesmo o LED funcionava. Só tenho gratidão pelo serviço e pela paciência em consertá-lo, dando o seu melhor para que tudo desse certo. Obrigado!",
   },
   {
     name: "Larissa Pilz",
     when: "há 2 meses",
     text: "Luiz é um excelente profissional. Atendeu-me de forma rápida. Identificou o problema do meu laptop, pesquisou a peça, fez a troca e agora tudo funciona perfeitamente. Em 3 dias estava tudo resolvido. Recomendo muito os serviços dele.",
-    rating: 5,
   },
   {
     name: "Cátia Ferreira",
     when: "há 5 meses",
     text: "Ótimo trabalho. Rápido e eficiente. O meu computador finalmente voltou ao seu funcionamento normal após passar pelas mãos de vários outros técnicos com tentativas falhadas. Muito obrigada Luiz Tech pelo excelente trabalho.",
-    rating: 5,
   },
   {
     name: "Ruud van Bochoven",
     when: "há um mês",
     text: "Ajudou perfeitamente! A impressora não estava a funcionar e eu não conseguia consertá-la sozinho; após a intervenção do Luiz, todos os problemas foram resolvidos! Se tiver outra dúvida no futuro, entro em contacto com ele novamente imediatamente. Obrigado!",
-    rating: 5,
   },
   {
     name: "Yan Torres",
     when: "há 5 meses",
     text: "Honesto e trabalha bem, arranjou a troca da bateria do computador e deu vida à impressora que estava parada em casa.",
-    rating: 5,
   },
   {
     name: "Paulo Henrique Maurinho",
     when: "há 5 meses",
     text: "Muito bom! O meu PC estava maluco e agora está como novo 🙌🏾",
-    rating: 5,
   },
 ];
 
 export function ProvaSocial() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => {
+      setIndex((current) => (current + 1) % testimonials.length);
+    }, 5500);
+    return () => window.clearInterval(id);
+  }, [paused]);
+
+  const current = testimonials[index]!;
+
   return (
     <section
       id="avaliacoes"
@@ -54,72 +63,63 @@ export function ProvaSocial() {
       <div className="section-seam" aria-hidden />
       <div className="relative z-[2] mx-auto max-w-[92rem] px-6 md:px-12">
         <Reveal>
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div className="max-w-2xl">
-              <p className="eyebrow text-ignition">Avaliações</p>
-              <h2 className="font-display mt-6 text-[clamp(2rem,4vw,3.2rem)] leading-[1.08] font-bold tracking-[-0.015em] uppercase">
-                Confiam no trabalho.
-              </h2>
-            </div>
-
-            <div className="flex items-center gap-3 border border-border px-5 py-3">
-              <span className="font-display text-2xl font-bold text-ignition">5.0</span>
-              <div>
-                <div className="flex gap-0.5" aria-hidden>
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <span key={i} className="font-display text-sm text-ignition">
-                      ★
-                    </span>
-                  ))}
-                </div>
-                <p className="mt-0.5 text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
-                  {testimonials.length} avaliações no Google
-                </p>
-              </div>
-            </div>
-          </div>
+          <p className="eyebrow text-ignition">Avaliações</p>
+          <h2 className="font-display mt-6 max-w-2xl text-[clamp(2rem,4vw,3.2rem)] leading-[1.08] font-bold tracking-[-0.015em] uppercase">
+            Confiam no trabalho.
+          </h2>
         </Reveal>
 
-        <div className="mt-12 columns-1 gap-6 md:mt-14 md:columns-2 lg:columns-3">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={i * 80} className="mb-6 break-inside-avoid">
-              <article className="card-pad border border-border bg-steel/50 shadow-soft">
-                <div className="mb-5 flex gap-1" aria-label={`${t.rating} de 5 estrelas`}>
-                  {Array.from({ length: t.rating }).map((_, j) => (
-                    <span key={j} aria-hidden className="font-display text-base text-ignition">
-                      ★
-                    </span>
-                  ))}
-                </div>
-                <blockquote className="text-[0.94rem] leading-[1.85] text-foreground/85">
-                  “{t.text}”
-                </blockquote>
-                <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
-                  <p className="font-display text-[0.88rem] font-bold uppercase tracking-[0.04em] text-foreground">
-                    {t.name}
-                  </p>
-                  <p className="text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
-                    {t.when}
-                  </p>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={120}>
+          <div
+            className="mt-14 grid gap-10 md:mt-16 lg:grid-cols-12 lg:items-center lg:gap-16"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocusCapture={() => setPaused(true)}
+            onBlurCapture={() => setPaused(false)}
+          >
+            {/* Esquerda — selo fixo, não muda */}
+            <div className="lg:col-span-4">
+              <LaserStars />
+              <p className="font-display mt-4 text-[1.6rem] font-bold uppercase tracking-[-0.01em]">
+                5 estrelas
+                <span className="block text-ignition">no Google.</span>
+              </p>
+              <a
+                href="https://www.google.com/maps/search/L.A.+Tech+Braga"
+                target="_blank"
+                rel="noreferrer"
+                className="link-quiet mt-5 inline-block text-[0.85rem] text-ignition"
+              >
+                Ver avaliações no Google Maps →
+              </a>
+            </div>
 
-        <Reveal delay={testimonials.length * 80 + 100}>
-          <div className="mt-4 border-t border-border pt-8 text-center">
-            <p className="text-[0.9rem] leading-[1.8] text-foreground/70">
-              Veja as avaliações reais diretamente no Google.
-            </p>
-            <a
-              href="https://www.google.com/maps/search/L.A.+Tech+Braga"
-              target="_blank"
-              rel="noreferrer"
-              className="link-quiet mt-3 inline-block text-ignition"
-            >
-              Ver no Google Maps →
-            </a>
+            {/* Direita — avaliação a rodar com crossfade */}
+            <div className="relative min-h-[16rem] lg:col-span-8 lg:min-h-[13rem]">
+              <AnimatePresence mode="wait">
+                <motion.article
+                  key={current.name}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  aria-live="polite"
+                  className="card-pad border border-border bg-steel/50 shadow-soft"
+                >
+                  <blockquote className="text-[1rem] leading-[1.9] text-foreground/85">
+                    “{current.text}”
+                  </blockquote>
+                  <div className="mt-7 flex items-center justify-between border-t border-border pt-5">
+                    <p className="font-display text-[0.9rem] font-bold uppercase tracking-[0.04em] text-foreground">
+                      {current.name}
+                    </p>
+                    <p className="text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
+                      {current.when}
+                    </p>
+                  </div>
+                </motion.article>
+              </AnimatePresence>
+            </div>
           </div>
         </Reveal>
       </div>
