@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApoioEmpresasBragaRouteImport } from './routes/apoio-empresas-braga'
+import { Route as DesignEPresencaDigitalBragaRouteImport } from './routes/design-e-presenca-digital-braga'
 import { Route as RedesWifiBragaRouteImport } from './routes/redes-wifi-braga'
 import { Route as ReparacaoComputadoresBragaRouteImport } from './routes/reparacao-computadores-braga'
 import { Route as ReparacaoHardwareBragaRouteImport } from './routes/reparacao-hardware-braga'
@@ -26,6 +27,12 @@ const ApoioEmpresasBragaRoute = ApoioEmpresasBragaRouteImport.update({
   path: '/apoio-empresas-braga',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DesignEPresencaDigitalBragaRoute =
+  DesignEPresencaDigitalBragaRouteImport.update({
+    id: '/design-e-presenca-digital-braga',
+    path: '/design-e-presenca-digital-braga',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const RedesWifiBragaRoute = RedesWifiBragaRouteImport.update({
   id: '/redes-wifi-braga',
   path: '/redes-wifi-braga',
@@ -51,6 +58,7 @@ const ReparacaoPortateisBragaRoute = ReparacaoPortateisBragaRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/apoio-empresas-braga': typeof ApoioEmpresasBragaRoute
+  '/design-e-presenca-digital-braga': typeof DesignEPresencaDigitalBragaRoute
   '/redes-wifi-braga': typeof RedesWifiBragaRoute
   '/reparacao-computadores-braga': typeof ReparacaoComputadoresBragaRoute
   '/reparacao-hardware-braga': typeof ReparacaoHardwareBragaRoute
@@ -59,6 +67,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/apoio-empresas-braga': typeof ApoioEmpresasBragaRoute
+  '/design-e-presenca-digital-braga': typeof DesignEPresencaDigitalBragaRoute
   '/redes-wifi-braga': typeof RedesWifiBragaRoute
   '/reparacao-computadores-braga': typeof ReparacaoComputadoresBragaRoute
   '/reparacao-hardware-braga': typeof ReparacaoHardwareBragaRoute
@@ -68,6 +77,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/apoio-empresas-braga': typeof ApoioEmpresasBragaRoute
+  '/design-e-presenca-digital-braga': typeof DesignEPresencaDigitalBragaRoute
   '/redes-wifi-braga': typeof RedesWifiBragaRoute
   '/reparacao-computadores-braga': typeof ReparacaoComputadoresBragaRoute
   '/reparacao-hardware-braga': typeof ReparacaoHardwareBragaRoute
@@ -78,6 +88,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/apoio-empresas-braga'
+    | '/design-e-presenca-digital-braga'
     | '/redes-wifi-braga'
     | '/reparacao-computadores-braga'
     | '/reparacao-hardware-braga'
@@ -86,6 +97,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/apoio-empresas-braga'
+    | '/design-e-presenca-digital-braga'
     | '/redes-wifi-braga'
     | '/reparacao-computadores-braga'
     | '/reparacao-hardware-braga'
@@ -94,6 +106,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/apoio-empresas-braga'
+    | '/design-e-presenca-digital-braga'
     | '/redes-wifi-braga'
     | '/reparacao-computadores-braga'
     | '/reparacao-hardware-braga'
@@ -103,6 +116,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApoioEmpresasBragaRoute: typeof ApoioEmpresasBragaRoute
+  DesignEPresencaDigitalBragaRoute: typeof DesignEPresencaDigitalBragaRoute
   RedesWifiBragaRoute: typeof RedesWifiBragaRoute
   ReparacaoComputadoresBragaRoute: typeof ReparacaoComputadoresBragaRoute
   ReparacaoHardwareBragaRoute: typeof ReparacaoHardwareBragaRoute
@@ -123,6 +137,13 @@ declare module '@tanstack/react-router' {
       path: '/apoio-empresas-braga'
       fullPath: '/apoio-empresas-braga'
       preLoaderRoute: typeof ApoioEmpresasBragaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/design-e-presenca-digital-braga': {
+      id: '/design-e-presenca-digital-braga'
+      path: '/design-e-presenca-digital-braga'
+      fullPath: '/design-e-presenca-digital-braga'
+      preLoaderRoute: typeof DesignEPresencaDigitalBragaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/redes-wifi-braga': {
@@ -159,6 +180,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApoioEmpresasBragaRoute: ApoioEmpresasBragaRoute,
+  DesignEPresencaDigitalBragaRoute: DesignEPresencaDigitalBragaRoute,
   RedesWifiBragaRoute: RedesWifiBragaRoute,
   ReparacaoComputadoresBragaRoute: ReparacaoComputadoresBragaRoute,
   ReparacaoHardwareBragaRoute: ReparacaoHardwareBragaRoute,

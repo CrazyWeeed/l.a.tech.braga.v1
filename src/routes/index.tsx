@@ -6,6 +6,7 @@ import { Hero } from "@/components/site/Hero";
 import { Experiencia } from "@/components/site/Experiencia";
 import { QuemSou } from "@/components/site/QuemSou";
 import { Servicos } from "@/components/site/Servicos";
+import { DesignDigital } from "@/components/site/DesignDigital";
 import { Aproximacao } from "@/components/site/Aproximacao";
 import { ProvaSocial } from "@/components/site/ProvaSocial";
 import { Processo } from "@/components/site/Processo";
@@ -67,6 +68,7 @@ function Index() {
         <Hero />
         <Experiencia />
         <Servicos />
+        <DesignDigital />
         <QuemSou />
         <Aproximacao />
         <ProvaSocial />

@@ -7,7 +7,8 @@ export type ServicePath =
   | "/reparacao-portateis-braga"
   | "/reparacao-hardware-braga"
   | "/redes-wifi-braga"
-  | "/apoio-empresas-braga";
+  | "/apoio-empresas-braga"
+  | "/design-e-presenca-digital-braga";
 
 export type ServicePageData = {
   eyebrow: string;
@@ -360,6 +361,37 @@ export const servicePages: Record<string, ServicePageData> = {
       { label: "Reparação de computadores", to: "/reparacao-computadores-braga" },
       { label: "Redes e Wi-Fi", to: "/redes-wifi-braga" },
       { label: "Reparação de portáteis", to: "/reparacao-portateis-braga" },
+    ],
+  },
+  design: {
+    metaDescription: "Criação de sites, logótipo, cartões de visita, flyers e presença digital para pequenos negócios em Braga.",
+    eyebrow: "Design · Braga",
+    title: "Design e Presença Digital em Braga",
+    slug: "design-e-presenca-digital-braga",
+    intro:
+      "Site, identidade visual e materiais impressos tratados num único ponto de contacto, para pequenos negócios em Braga que querem uma imagem consistente online e no papel.",
+    bullets: ["Sites", "Identidade visual", "Materiais impressos", "Braga"],
+    sections: [
+      {
+        heading: "Site e loja online",
+        text: "Criação de sites institucionais ou lojas online, prontos para publicar, com domínio próprio e email profissional associado ao negócio.",
+        items: ["Site institucional", "Loja online", "Domínio e email profissional", "Manutenção e SEO"],
+      },
+      {
+        heading: "Identidade visual",
+        text: "Logótipo, cores e tipografia consistentes, para que o negócio se pareça sempre com o mesmo negócio, em qualquer material.",
+        items: ["Logótipo", "Paleta de cores e tipografia", "Aplicação em materiais", "Consistência de marca"],
+      },
+      {
+        heading: "Materiais impressos e mapas",
+        text: "Cartões de visita, papel timbrado, flyers, banners e autocolantes de viatura, além da ficha do negócio nos mapas do Google.",
+        items: ["Cartões de visita", "Flyers e banners", "Autocolantes de viatura", "Google Business Profile"],
+      },
+    ],
+    related: [
+      { label: "Apoio a empresas", to: "/apoio-empresas-braga" },
+      { label: "Redes e Wi-Fi", to: "/redes-wifi-braga" },
+      { label: "Reparação de computadores", to: "/reparacao-computadores-braga" },
     ],
   },
 };

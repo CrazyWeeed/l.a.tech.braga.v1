@@ -60,18 +60,6 @@ const outros = [
   "Aconselhamento antes de comprar equipamento",
 ];
 
-const design = [
-  "Criação de sites e lojas online",
-  "Logótipo e identidade visual",
-  "Cartões de visita e papel timbrado",
-  "Flyers, banners e roll-ups",
-  "Autocolantes para viaturas",
-  "Configuração do Google Business Profile",
-  "Domínio e email profissional",
-  "Manutenção e SEO de sites",
-];
-
-
 export function Servicos() {
   return (
     <section
@@ -169,23 +157,6 @@ export function Servicos() {
                 >
                   <span className="mt-[0.7em] block h-[2px] w-4 shrink-0 bg-ignition" />
                   {o}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
-
-        <Reveal delay={200}>
-          <div className="mt-10 border-t border-border pt-10">
-            <p className="eyebrow text-ignition">Design &amp; presença digital</p>
-            <ul className="mt-7 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
-              {design.map((d) => (
-                <li
-                  key={d}
-                  className="flex items-start gap-3 text-[0.88rem] leading-[1.7] text-foreground/75"
-                >
-                  <span className="mt-[0.7em] block h-[2px] w-4 shrink-0 bg-ignition" />
-                  {d}
                 </li>
               ))}
             </ul>
