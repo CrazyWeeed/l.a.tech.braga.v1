@@ -1,13 +1,7 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useMotionValue, animate as fmAnimate } from "framer-motion";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { motion, useMotionValue, animate as fmAnimate } from "framer-motion";
 import { Reveal } from "./Reveal";
 import { LaserStars } from "./LaserStars";
-
-// Distância mínima (px) ou velocidade para o arrasto trocar de avaliação.
-const DRAG_THRESHOLD = 90;
-const DRAG_VELOCITY_THRESHOLD = 500;
-// Quanto o cartão pode deslocar-se ao arrastar antes de "prender" no limite.
-const DRAG_LIMIT = 140;
 
 const testimonials = [
   {
@@ -47,24 +41,70 @@ const testimonials = [
   },
 ];
 
+// Clones nas pontas do trilho para permitir loop infinito e suave (sem "salto" visível).
+const loop = [testimonials[testimonials.length - 1]!, ...testimonials, testimonials[0]!];
+
+const DRAG_THRESHOLD = 90;
+const DRAG_VELOCITY_THRESHOLD = 500;
+
 export function ProvaSocial() {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1); // 1 = primeira avaliação "real" (0 é o clone da última)
   const [paused, setPaused] = useState(false);
-  // Posição horizontal do cartão enquanto é arrastado (rato ou dedo).
-  const dragX = useMotionValue(0);
+  const [width, setWidth] = useState(0);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const x = useMotionValue(0);
+
+  // Mede a largura real do cartão e mantém o trilho alinhado ao redimensionar.
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => {
+      const w = el.offsetWidth;
+      setWidth(w);
+      x.set(-index * w);
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Move o trilho até nextIndex. Ao aterrar num clone das pontas, "teleporta"
+  // sem animação para a posição real equivalente — o loop fica invisível.
+  const goTo = (nextIndex: number) => {
+    if (!width) {
+      setIndex(nextIndex);
+      return;
+    }
+    fmAnimate(x, -nextIndex * width, {
+      type: "spring",
+      stiffness: 320,
+      damping: 34,
+      onComplete: () => {
+        if (nextIndex === loop.length - 1) {
+          x.set(-1 * width);
+          setIndex(1);
+        } else if (nextIndex === 0) {
+          x.set(-(loop.length - 2) * width);
+          setIndex(loop.length - 2);
+        }
+      },
+    });
+    setIndex(nextIndex);
+  };
 
   useEffect(() => {
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = window.setInterval(() => {
-      setIndex((current) => (current + 1) % testimonials.length);
+      goTo(index + 1);
     }, 5500);
     return () => window.clearInterval(id);
-  }, [paused]);
-
-  const current = testimonials[index]!;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paused, index, width]);
 
   const handleDragEnd = (
-    _event: MouseEvent | TouchEvent | PointerEvent,
+    _e: MouseEvent | TouchEvent | PointerEvent,
     info: { offset: { x: number }; velocity: { x: number } },
   ) => {
     const passedThreshold =
@@ -72,12 +112,9 @@ export function ProvaSocial() {
       Math.abs(info.velocity.x) > DRAG_VELOCITY_THRESHOLD;
 
     if (passedThreshold) {
-      const direction = info.offset.x < 0 ? 1 : -1;
-      setIndex((current) => (current + direction + testimonials.length) % testimonials.length);
-      dragX.set(0);
+      goTo(index + (info.offset.x < 0 ? 1 : -1));
     } else {
-      // Não passou o limiar: volta suavemente à posição original.
-      fmAnimate(dragX, 0, { type: "spring", stiffness: 420, damping: 34 });
+      goTo(index);
     }
     setPaused(false);
   };
@@ -104,7 +141,7 @@ export function ProvaSocial() {
             onFocusCapture={() => setPaused(true)}
             onBlurCapture={() => setPaused(false)}
           >
-            {/* Esquerda — selo fixo, não muda, agora maior */}
+            {/* Esquerda — selo fixo, não muda */}
             <div className="lg:col-span-4">
               <LaserStars />
               <p className="font-display mt-5 text-[2rem] leading-[1.05] font-bold uppercase tracking-[-0.01em] sm:text-[2.35rem]">
@@ -121,8 +158,9 @@ export function ProvaSocial() {
               </a>
             </div>
 
-            {/* Direita — avaliação arrastável (rato ou dedo), com fade só nas bordas */}
+            {/* Direita — trilho de avaliações; entram e saem pelo "portal" nas bordas */}
             <div
+              ref={containerRef}
               className="relative min-h-[16rem] overflow-hidden lg:col-span-8 lg:min-h-[13rem]"
               style={{
                 WebkitMaskImage:
@@ -131,36 +169,37 @@ export function ProvaSocial() {
                   "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)",
               }}
             >
-              <AnimatePresence mode="wait">
-                <motion.article
-                  key={current.name}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                  drag="x"
-                  dragElastic={0.18}
-                  dragConstraints={{ left: -DRAG_LIMIT, right: DRAG_LIMIT }}
-                  dragMomentum={false}
-                  onDragStart={() => setPaused(true)}
-                  onDragEnd={handleDragEnd}
-                  style={{ x: dragX, touchAction: "pan-y" }}
-                  aria-live="polite"
-                  className="card-pad cursor-grab select-none border border-border bg-steel/50 shadow-soft active:cursor-grabbing"
-                >
-                  <blockquote className="text-[1rem] leading-[1.9] text-foreground/85">
-                    “{current.text}”
-                  </blockquote>
-                  <div className="mt-7 flex items-center justify-between border-t border-border pt-5">
-                    <p className="font-display text-[0.9rem] font-bold uppercase tracking-[0.04em] text-foreground">
-                      {current.name}
-                    </p>
-                    <p className="text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
-                      {current.when}
-                    </p>
-                  </div>
-                </motion.article>
-              </AnimatePresence>
+              <motion.div
+                className="flex h-full cursor-grab select-none active:cursor-grabbing"
+                drag="x"
+                dragElastic={0.1}
+                dragMomentum={false}
+                dragConstraints={{ left: -(index + 1) * width, right: -(index - 1) * width }}
+                onDragStart={() => setPaused(true)}
+                onDragEnd={handleDragEnd}
+                style={{ x, touchAction: "pan-y" }}
+              >
+                {loop.map((t, i) => (
+                  <article
+                    key={`${t.name}-${i}`}
+                    aria-hidden={i !== index}
+                    className="card-pad w-full flex-none border border-border bg-steel/50 shadow-soft"
+                    style={{ width: width || "100%" }}
+                  >
+                    <blockquote className="text-[1rem] leading-[1.9] text-foreground/85">
+                      “{t.text}”
+                    </blockquote>
+                    <div className="mt-7 flex items-center justify-between border-t border-border pt-5">
+                      <p className="font-display text-[0.9rem] font-bold uppercase tracking-[0.04em] text-foreground">
+                        {t.name}
+                      </p>
+                      <p className="text-[0.72rem] uppercase tracking-[0.08em] text-muted-foreground">
+                        {t.when}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </motion.div>
             </div>
           </div>
         </Reveal>
