@@ -1,4 +1,5 @@
 import { Reveal } from "./Reveal";
+import { LogoRevealAnimation } from "./LogoRevealAnimation";
 
 export function QuemSou() {
   return (
@@ -8,15 +9,24 @@ export function QuemSou() {
     >
       <div className="relative z-[2] mx-auto max-w-[92rem] px-6 md:px-12">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-end lg:gap-20">
-          <Reveal className="lg:col-span-5">
-            <p className="eyebrow text-ignition">O técnico</p>
-            <div className="mt-7 flex items-end gap-5 border-b border-border pb-8">
-              <span className="font-display text-[5rem] font-bold leading-[0.82] tracking-[-0.04em] text-ignition md:text-[6.5rem]">
-                20+
-              </span>
-              <span className="max-w-[8rem] pb-1 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                anos de experiência
-              </span>
+          <Reveal className="lg:col-span-5 lg:self-stretch">
+            <div className="flex h-full flex-col lg:justify-between">
+              {/* Espaço que estava vazio no desktop — símbolo LA a revelar-se */}
+              <div className="flex flex-1 items-center justify-center py-6">
+                <LogoRevealAnimation />
+              </div>
+
+              <div>
+                <p className="eyebrow text-ignition">O técnico</p>
+                <div className="mt-7 flex items-end gap-5 border-b border-border pb-8">
+                  <span className="font-display text-[5rem] font-bold leading-[0.82] tracking-[-0.04em] text-ignition md:text-[6.5rem]">
+                    20+
+                  </span>
+                  <span className="max-w-[8rem] pb-1 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                    anos de experiência
+                  </span>
+                </div>
+              </div>
             </div>
           </Reveal>
 
