@@ -48,7 +48,7 @@ export function LaserStars() {
   const revealed = useRevealOnScroll(containerRef);
 
   return (
-    <div ref={containerRef} className="flex gap-1.5" aria-label="5 de 5 estrelas">
+    <div ref={containerRef} className="flex gap-2.5" aria-label="5 de 5 estrelas">
       {Array.from({ length: 5 }).map((_, i) => {
         const traceDelay = i * 0.18;
         const fillDelay = traceDelay + 0.45;
@@ -56,7 +56,7 @@ export function LaserStars() {
           <svg
             key={i}
             viewBox="0 0 24 24"
-            className="h-7 w-7"
+            className="h-9 w-9 sm:h-10 sm:w-10"
             fill="none"
             aria-hidden="true"
           >

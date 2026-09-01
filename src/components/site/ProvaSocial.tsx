@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useMotionValue, animate as fmAnimate } from "framer-motion";
 import { Reveal } from "./Reveal";
 import { LaserStars } from "./LaserStars";
+
+// Distância mínima (px) ou velocidade para o arrasto trocar de avaliação.
+const DRAG_THRESHOLD = 90;
+const DRAG_VELOCITY_THRESHOLD = 500;
+// Quanto o cartão pode deslocar-se ao arrastar antes de "prender" no limite.
+const DRAG_LIMIT = 140;
 
 const testimonials = [
   {
@@ -44,6 +50,8 @@ const testimonials = [
 export function ProvaSocial() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  // Posição horizontal do cartão enquanto é arrastado (rato ou dedo).
+  const dragX = useMotionValue(0);
 
   useEffect(() => {
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -54,6 +62,25 @@ export function ProvaSocial() {
   }, [paused]);
 
   const current = testimonials[index]!;
+
+  const handleDragEnd = (
+    _event: MouseEvent | TouchEvent | PointerEvent,
+    info: { offset: { x: number }; velocity: { x: number } },
+  ) => {
+    const passedThreshold =
+      Math.abs(info.offset.x) > DRAG_THRESHOLD ||
+      Math.abs(info.velocity.x) > DRAG_VELOCITY_THRESHOLD;
+
+    if (passedThreshold) {
+      const direction = info.offset.x < 0 ? 1 : -1;
+      setIndex((current) => (current + direction + testimonials.length) % testimonials.length);
+      dragX.set(0);
+    } else {
+      // Não passou o limiar: volta suavemente à posição original.
+      fmAnimate(dragX, 0, { type: "spring", stiffness: 420, damping: 34 });
+    }
+    setPaused(false);
+  };
 
   return (
     <section
@@ -77,10 +104,10 @@ export function ProvaSocial() {
             onFocusCapture={() => setPaused(true)}
             onBlurCapture={() => setPaused(false)}
           >
-            {/* Esquerda — selo fixo, não muda */}
+            {/* Esquerda — selo fixo, não muda, agora maior */}
             <div className="lg:col-span-4">
               <LaserStars />
-              <p className="font-display mt-4 text-[1.6rem] font-bold uppercase tracking-[-0.01em]">
+              <p className="font-display mt-5 text-[2rem] leading-[1.05] font-bold uppercase tracking-[-0.01em] sm:text-[2.35rem]">
                 5 estrelas
                 <span className="block text-ignition">no Google.</span>
               </p>
@@ -88,23 +115,38 @@ export function ProvaSocial() {
                 href="https://www.google.com/maps/search/L.A.+Tech+Braga"
                 target="_blank"
                 rel="noreferrer"
-                className="link-quiet mt-5 inline-block text-[0.85rem] text-ignition"
+                className="link-quiet mt-6 inline-block text-[1rem] text-ignition"
               >
                 Ver avaliações no Google Maps →
               </a>
             </div>
 
-            {/* Direita — avaliação a rodar com crossfade */}
-            <div className="relative min-h-[16rem] lg:col-span-8 lg:min-h-[13rem]">
+            {/* Direita — avaliação arrastável (rato ou dedo), com fade só nas bordas */}
+            <div
+              className="relative min-h-[16rem] overflow-hidden lg:col-span-8 lg:min-h-[13rem]"
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)",
+              }}
+            >
               <AnimatePresence mode="wait">
                 <motion.article
                   key={current.name}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  drag="x"
+                  dragElastic={0.18}
+                  dragConstraints={{ left: -DRAG_LIMIT, right: DRAG_LIMIT }}
+                  dragMomentum={false}
+                  onDragStart={() => setPaused(true)}
+                  onDragEnd={handleDragEnd}
+                  style={{ x: dragX, touchAction: "pan-y" }}
                   aria-live="polite"
-                  className="card-pad border border-border bg-steel/50 shadow-soft"
+                  className="card-pad cursor-grab select-none border border-border bg-steel/50 shadow-soft active:cursor-grabbing"
                 >
                   <blockquote className="text-[1rem] leading-[1.9] text-foreground/85">
                     “{current.text}”
