@@ -51,40 +51,40 @@ function NotFoundComponent() {
         </div>
       </header>
 
-      <main className="relative isolate flex flex-1 items-center justify-center overflow-hidden px-6 py-24 md:px-12">
+      <main className="relative isolate flex flex-1 items-center justify-center overflow-y-auto px-6 py-10 md:px-12 md:py-14">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(70%_60%_at_82%_12%,oklch(0.685_0.195_41_/_0.14)_0%,transparent_62%),radial-gradient(90%_70%_at_8%_96%,oklch(1_0_0_/_0.04)_0%,transparent_60%)]" />
 
         <div className="max-w-lg text-center">
-          <div className="lat404-badge relative mx-auto mb-8 flex h-24 w-24 items-center justify-center">
+          <div className="lat404-badge relative mx-auto mb-5 flex h-20 w-20 items-center justify-center">
             <span className="lat404-ring" />
             <span className="lat404-ring" />
             <span className="lat404-ring" />
-            <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border border-ash bg-steel/70 shadow-[0_0_0_1px_oklch(0.685_0.195_41_/_0.15)]">
-              <WifiOff className="lat404-flicker h-8 w-8 text-ignition" strokeWidth={1.6} aria-hidden="true" />
+            <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-ash bg-steel/70 shadow-[0_0_0_1px_oklch(0.685_0.195_41_/_0.15)]">
+              <WifiOff className="lat404-flicker h-7 w-7 text-ignition" strokeWidth={1.6} aria-hidden="true" />
             </div>
           </div>
 
           <p className="eyebrow text-ignition">Erro 404 — Conexão perdida</p>
 
-          <div className="lat404-scan relative mt-5 inline-block overflow-hidden">
-            <h1 className="font-display text-[clamp(3.2rem,10vw,6rem)] font-bold leading-none tracking-[-0.02em] text-foreground">
+          <div className="lat404-scan relative mt-4 inline-block overflow-hidden">
+            <h1 className="font-display text-[clamp(2.6rem,8vw,4.5rem)] font-bold leading-none tracking-[-0.02em] text-foreground">
               404
             </h1>
           </div>
 
-          <p className="font-display mt-4 text-[clamp(1.15rem,2.6vw,1.5rem)] font-semibold uppercase tracking-[-0.01em] text-foreground">
+          <p className="font-display mt-3 text-[clamp(1.05rem,2.2vw,1.35rem)] font-semibold uppercase tracking-[-0.01em] text-foreground">
             Parece que esta página saiu da rede.
           </p>
 
-          <p className="mt-3 text-[0.95rem] leading-[1.8] text-muted-foreground">
+          <p className="mt-2 text-[0.9rem] leading-[1.7] text-muted-foreground">
             Já tentámos o clássico: desligar, contar até três e voltar a ligar.
             Não resultou — mas prometemos que o resto do site continua bem ligado.
           </p>
 
-          <div className="mt-9 flex flex-col items-center gap-4">
+          <div className="mt-6 flex flex-col items-center gap-3">
             <Link
               to="/"
-              className="btn-ignite inline-flex items-center justify-center px-8 py-4 text-[0.7rem] tracking-[0.24em] uppercase"
+              className="btn-ignite inline-flex items-center justify-center px-8 py-3.5 text-[0.7rem] tracking-[0.24em] uppercase"
             >
               Voltar ao início
             </Link>
@@ -105,8 +105,8 @@ function NotFoundComponent() {
           position: absolute;
           inset: 0;
           margin: auto;
-          width: 4rem;
-          height: 4rem;
+          width: 3.5rem;
+          height: 3.5rem;
           border-radius: 9999px;
           border: 1.5px solid oklch(0.775 0.155 48 / 0.9);
           box-shadow: 0 0 16px 0 oklch(0.685 0.195 41 / 0.35);
