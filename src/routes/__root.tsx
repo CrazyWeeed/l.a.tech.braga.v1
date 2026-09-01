@@ -8,28 +8,153 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { WifiOff } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
+  // Isolated to the 404 view only: keep it out of search results without
+  // touching the shared root head() (used by every other page).
+  useEffect(() => {
+    const previousTitle = document.title;
+    document.title = "Página não encontrada | L.A. Tech Braga";
+
+    let meta = document.querySelector('meta[name="robots"]');
+    const previousContent = meta?.getAttribute("content") ?? null;
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "robots");
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", "noindex, nofollow");
+
+    return () => {
+      document.title = previousTitle;
+      if (previousContent !== null) meta?.setAttribute("content", previousContent);
+    };
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
+    <div className="carbon-weave tech-grid depth-dark flex min-h-screen flex-col bg-obsidian text-foreground">
+      <header className="border-b border-border bg-obsidian">
+        <div className="mx-auto flex max-w-[92rem] items-center justify-between gap-6 px-6 py-5 md:px-12">
+          <Link to="/" className="font-display text-lg font-bold tracking-[0.14em] uppercase">
+            L.A. <span className="text-ignition">Tech</span> Braga
+          </Link>
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-muted-foreground transition-colors hover:text-foreground"
           >
-            Go home
+            Voltar ao site
           </Link>
         </div>
-      </div>
+      </header>
+
+      <main className="relative isolate flex flex-1 items-center justify-center overflow-hidden px-6 py-24 md:px-12">
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(70%_60%_at_82%_12%,oklch(0.685_0.195_41_/_0.14)_0%,transparent_62%),radial-gradient(90%_70%_at_8%_96%,oklch(1_0_0_/_0.04)_0%,transparent_60%)]" />
+
+        <div className="max-w-lg text-center">
+          <div className="lat404-badge relative mx-auto mb-8 flex h-24 w-24 items-center justify-center">
+            <span className="lat404-ring" />
+            <span className="lat404-ring" />
+            <span className="lat404-ring" />
+            <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border border-ash bg-steel/70 shadow-[0_0_0_1px_oklch(0.685_0.195_41_/_0.15)]">
+              <WifiOff className="lat404-flicker h-8 w-8 text-ignition" strokeWidth={1.6} aria-hidden="true" />
+            </div>
+          </div>
+
+          <p className="eyebrow text-ignition">Erro 404 — Conexão perdida</p>
+
+          <div className="lat404-scan relative mt-5 inline-block overflow-hidden">
+            <h1 className="font-display text-[clamp(3.2rem,10vw,6rem)] font-bold leading-none tracking-[-0.02em] text-foreground">
+              404
+            </h1>
+          </div>
+
+          <p className="font-display mt-4 text-[clamp(1.15rem,2.6vw,1.5rem)] font-semibold uppercase tracking-[-0.01em] text-foreground">
+            Parece que esta página saiu da rede.
+          </p>
+
+          <p className="mt-3 text-[0.95rem] leading-[1.8] text-muted-foreground">
+            Já tentámos o clássico: desligar, contar até três e voltar a ligar.
+            Não resultou — mas prometemos que o resto do site continua bem ligado.
+          </p>
+
+          <div className="mt-9 flex flex-col items-center gap-4">
+            <Link
+              to="/"
+              className="btn-ignite inline-flex items-center justify-center px-8 py-4 text-[0.7rem] tracking-[0.24em] uppercase"
+            >
+              Voltar ao início
+            </Link>
+            <Link
+              to="/"
+              hash="servicos"
+              className="link-quiet text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground"
+            >
+              Ou veja os nossos serviços
+            </Link>
+          </div>
+        </div>
+      </main>
+
+      {/* Scoped to this 404 view only — no shared stylesheet touched. */}
+      <style>{`
+        .lat404-ring {
+          position: absolute;
+          inset: 0;
+          margin: auto;
+          width: 4rem;
+          height: 4rem;
+          border-radius: 9999px;
+          border: 1.5px solid oklch(0.775 0.155 48 / 0.9);
+          box-shadow: 0 0 16px 0 oklch(0.685 0.195 41 / 0.35);
+          opacity: 0;
+          animation: lat404-radar 3.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+        }
+        .lat404-ring:nth-child(2) { animation-delay: 1.2s; }
+        .lat404-ring:nth-child(3) { animation-delay: 2.4s; }
+        @keyframes lat404-radar {
+          0% { transform: scale(0.65); opacity: 0.85; }
+          100% { transform: scale(2.3); opacity: 0; }
+        }
+        .lat404-flicker {
+          animation: lat404-flicker 4.5s ease-in-out infinite;
+        }
+        @keyframes lat404-flicker {
+          0%, 42%, 100% { opacity: 1; }
+          44% { opacity: 0.25; }
+          46% { opacity: 1; }
+          70% { opacity: 1; }
+          72% { opacity: 0.2; }
+          75% { opacity: 1; }
+        }
+        .lat404-scan::after {
+          content: "";
+          position: absolute;
+          inset-inline: -10%;
+          height: 40%;
+          top: -40%;
+          background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            oklch(0.775 0.155 48 / 0.35) 50%,
+            transparent 100%
+          );
+          animation: lat404-scan 4.5s ease-in-out infinite;
+          pointer-events: none;
+        }
+        @keyframes lat404-scan {
+          0%, 20% { top: -40%; }
+          55%, 100% { top: 100%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .lat404-ring, .lat404-flicker, .lat404-scan::after {
+            animation: none;
+          }
+        }
+      `}</style>
     </div>
   );
 }
