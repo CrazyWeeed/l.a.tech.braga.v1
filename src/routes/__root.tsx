@@ -12,6 +12,7 @@ import { WifiOff } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { CookieConsent } from "../components/site/CookieConsent";
 
 function NotFoundComponent() {
   // Isolated to the 404 view only: keep it out of search results without
@@ -256,6 +257,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <CookieConsent />
     </QueryClientProvider>
   );
 }

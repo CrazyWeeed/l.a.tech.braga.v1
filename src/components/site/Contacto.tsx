@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
+import { openCookiePreferences } from "@/lib/consent";
 
 const WHATSAPP = "351934587555";
 
@@ -12,10 +14,12 @@ export function Contacto() {
   const [telefone, setTelefone] = useState("");
   const [local, setLocal] = useState("");
   const [descricao, setDescricao] = useState("");
+  const [aceitaPrivacidade, setAceitaPrivacidade] = useState(false);
   const [sent, setSent] = useState(false);
 
   const descricaoOk = descricao.trim().length >= 20;
-  const valido = nome.trim().length >= 2 && telefone.trim().length >= 9 && descricaoOk;
+  const valido =
+    nome.trim().length >= 2 && telefone.trim().length >= 9 && descricaoOk && aceitaPrivacidade;
 
   function enviar(e: React.FormEvent) {
     e.preventDefault();
@@ -177,10 +181,27 @@ export function Contacto() {
                   </label>
                 </div>
 
+                <label className="mt-8 flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={aceitaPrivacidade}
+                    onChange={(e) => setAceitaPrivacidade(e.target.checked)}
+                    className="mt-1 h-4 w-4 shrink-0 accent-ignition"
+                  />
+                  <span className="text-[0.82rem] leading-[1.7] text-muted-foreground">
+                    Li e aceito a{" "}
+                    <Link to="/politica-de-privacidade" className="link-quiet text-ignition">
+                      Política de Privacidade
+                    </Link>
+                    . *
+                  </span>
+                </label>
+
                 <button
                   type="submit"
                   disabled={!valido}
-                  className={`mt-9 w-full px-8 py-5 text-[0.72rem] tracking-[0.24em] uppercase ${
+                  className={`mt-6 w-full px-8 py-5 text-[0.72rem] tracking-[0.24em] uppercase ${
                     valido
                       ? "btn-ignite"
                       : "cursor-not-allowed border border-border bg-ash/40 font-semibold text-muted-foreground"
@@ -258,6 +279,21 @@ export function Footer() {
               WhatsApp
             </a>
             <span>Braga · Portugal</span>
+            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.76rem] md:justify-end">
+              <Link to="/politica-de-privacidade" className="link-quiet">
+                Política de Privacidade
+              </Link>
+              <Link to="/politica-de-cookies" className="link-quiet">
+                Política de Cookies
+              </Link>
+              <button
+                type="button"
+                onClick={openCookiePreferences}
+                className="link-quiet cursor-pointer"
+              >
+                Preferências de cookies
+              </button>
+            </div>
             <span className="mt-4 text-[0.72rem] tracking-[0.14em] uppercase">
               © {new Date().getFullYear()} L.A. Tech Braga
             </span>
