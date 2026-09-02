@@ -64,6 +64,13 @@ export function CookieConsent() {
           className="link-quiet whitespace-nowrap text-ignition"
         >
           Política de Privacidade
+        </Link>{" "}
+        ·{" "}
+        <Link
+          to="/politica-de-cookies"
+          className="link-quiet whitespace-nowrap text-ignition"
+        >
+          Preferências
         </Link>
       </p>
       <div className="flex gap-3">

@@ -56,7 +56,7 @@ export function LaserStars() {
           <svg
             key={i}
             viewBox="0 0 24 24"
-            className="h-9 w-9 sm:h-10 sm:w-10"
+            className="h-9 w-9 overflow-visible sm:h-10 sm:w-10"
             fill="none"
             aria-hidden="true"
           >
