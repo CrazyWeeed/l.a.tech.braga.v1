@@ -23,7 +23,7 @@ function PoliticaDePrivacidade() {
     <LegalPage
       eyebrow="Legal"
       title="Política de Privacidade"
-      updatedAt="[DATA A PREENCHER]"
+      updatedAt="2 de setembro de 2026"
     >
       <p>
         Esta página explica como a L.A. Tech Braga trata os dados pessoais recolhidos
@@ -35,26 +35,16 @@ function PoliticaDePrivacidade() {
         <h2>1. Responsável pelo tratamento dos dados</h2>
         <p>
           O responsável pelo tratamento dos dados recolhidos através deste site é a
-          L.A. Tech Braga.
+          L.A. Tech Braga, atividade de assistência informática.
         </p>
         <ul>
-          <li>
-            <strong>Denominação/entidade legal:</strong> [A PREENCHER — ex.: nome
-            completo do titular ou firma da empresa]
-          </li>
-          <li>
-            <strong>NIF:</strong> [A PREENCHER]
-          </li>
-          <li>
-            <strong>Morada:</strong> [A PREENCHER]
-          </li>
           <li>
             <strong>Contacto:</strong>{" "}
             <a href="tel:+351934587555">+351 934 587 555</a>
           </li>
           <li>
-            <strong>Contacto para questões de privacidade/RGPD:</strong> [A PREENCHER —
-            e-mail ou outro meio de contacto dedicado]
+            <strong>Contacto para questões de privacidade/RGPD:</strong> através do
+            mesmo número, por chamada ou WhatsApp.
           </li>
         </ul>
       </section>
@@ -100,17 +90,20 @@ function PoliticaDePrivacidade() {
       <section>
         <h2>5. Armazenamento e segurança dos dados</h2>
         <p>
-          [A PREENCHER — descreva aqui, de forma verdadeira, onde e como os dados são
-          efetivamente guardados (ex.: histórico de conversas do WhatsApp Business) e
-          que medidas de segurança são aplicadas.]
+          Os dados do formulário não são guardados numa base de dados própria deste
+          site. Ficam apenas no histórico de conversa do WhatsApp associado ao número
+          de contacto do prestador, uma aplicação de terceiros (WhatsApp/Meta
+          Platforms Ireland Limited) com as suas próprias medidas de segurança e
+          encriptação.
         </p>
       </section>
 
       <section>
         <h2>6. Prazo de conservação</h2>
         <p>
-          [A PREENCHER — indique durante quanto tempo os dados de contacto são
-          conservados, quando esse prazo puder ser definido.]
+          Os dados ficam conservados no histórico do WhatsApp enquanto isso for útil
+          para o acompanhamento do serviço solicitado, podendo o titular pedir a sua
+          eliminação a qualquer momento, nos termos da secção 7.
         </p>
       </section>
 
@@ -132,8 +125,7 @@ function PoliticaDePrivacidade() {
         <h2>8. Como exercer estes direitos</h2>
         <p>
           Para exercer qualquer um destes direitos, contacte-nos através de{" "}
-          <a href="tel:+351934587555">+351 934 587 555</a> ou [A PREENCHER — outro
-          canal de contacto dedicado, ex.: e-mail].
+          <a href="tel:+351934587555">+351 934 587 555</a> (chamada ou WhatsApp).
         </p>
         <p>
           Tem também o direito de apresentar reclamação junto da Comissão Nacional de
@@ -155,9 +147,12 @@ function PoliticaDePrivacidade() {
         <p>
           Quando o utilizador dá consentimento para cookies de análise, este site pode
           utilizar o Google Analytics 4, um serviço de análise de tráfego fornecido
-          pela Google Ireland Limited, para compreender como os visitantes utilizam o
-          site. O Google Analytics só é ativado após consentimento explícito, através
-          do Google Consent Mode.
+          pela Google Ireland Limited. Esta ferramenta recolhe dados estatísticos e
+          anónimos sobre a navegação — por exemplo, quantas pessoas visitam o site,
+          que páginas veem, de onde vêm e quanto tempo ficam — para perceber como o
+          site é utilizado e onde pode ser melhorado. Não é usada para fins
+          publicitários. O Google Analytics só é ativado após consentimento
+          explícito, através do Google Consent Mode.
         </p>
       </section>
 
@@ -166,17 +161,24 @@ function PoliticaDePrivacidade() {
         <p>
           Quando o utilizador dá consentimento para cookies de marketing, este site
           pode utilizar o Meta Pixel, uma ferramenta fornecida pela Meta Platforms
-          Ireland Limited, para medir a eficácia de campanhas publicitárias. O Meta
-          Pixel só é ativado após consentimento explícito.
+          Ireland Limited. Ao contrário do Google Analytics, o Meta Pixel tem uma
+          finalidade publicitária: mede o resultado de eventuais campanhas de
+          anúncios no Facebook e Instagram (por exemplo, se uma visita ao site veio de
+          um anúncio) e pode ser usado para criar públicos personalizados ou
+          semelhantes, de forma a mostrar anúncios deste negócio a pessoas que já
+          visitaram o site ou com perfil parecido. O Meta Pixel só é ativado após
+          consentimento explícito para cookies de marketing, e é possível recusar
+          apenas esta categoria sem afetar a navegação no site.
         </p>
       </section>
 
       <section>
         <h2>12. Destinatários e subcontratantes</h2>
         <p>
-          [A PREENCHER — se aplicável, identifique aqui fornecedores/subcontratantes
-          que possam ter acesso aos dados (ex.: WhatsApp/Meta como plataforma de
-          comunicação, alojamento do site, etc.).]
+          Os únicos destinatários dos dados do formulário são o próprio prestador de
+          serviço e o WhatsApp (Meta Platforms Ireland Limited), enquanto aplicação
+          usada para comunicação com os clientes. Não são vendidos, cedidos ou
+          partilhados com mais ninguém.
         </p>
       </section>
     </LegalPage>

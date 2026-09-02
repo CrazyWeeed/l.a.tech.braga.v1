@@ -21,7 +21,7 @@ export const Route = createFileRoute("/politica-de-cookies")({
 
 function PoliticaDeCookies() {
   return (
-    <LegalPage eyebrow="Legal" title="Política de Cookies" updatedAt="[DATA A PREENCHER]">
+    <LegalPage eyebrow="Legal" title="Política de Cookies" updatedAt="2 de setembro de 2026">
       <p>
         Um cookie é um pequeno ficheiro guardado no seu dispositivo quando visita um
         site. Este site utiliza cookies para funcionar corretamente e, apenas com o
@@ -41,19 +41,22 @@ function PoliticaDeCookies() {
         <h2>Cookies de análise (Google Analytics)</h2>
         <p>
           Usados apenas se aceitar, através do Google Analytics 4, para perceber
-          quantas pessoas visitam o site, que páginas veem e como chegam até nós. Estes
-          dados ajudam-nos a melhorar o site. Só são ativados depois de o utilizador
-          clicar em "Aceitar" no banner de cookies.
+          quantas pessoas visitam o site, que páginas veem e como chegam até nós —
+          dados estatísticos e anónimos, usados só para melhorar o site. Não servem
+          para fins publicitários. Só são ativados depois de o utilizador clicar em
+          "Aceitar" no banner de cookies.
         </p>
       </section>
 
       <section>
         <h2>Cookies de marketing (Meta Pixel)</h2>
         <p>
-          Usados apenas se aceitar, através do Meta Pixel, para medir a eficácia de
-          eventuais campanhas de publicidade nas plataformas Meta (Facebook/Instagram).
-          Só são ativados depois de o utilizador clicar em "Aceitar" no banner de
-          cookies.
+          Usados apenas se aceitar, através do Meta Pixel. Ao contrário dos cookies de
+          análise, estes têm finalidade publicitária: medem o resultado de eventuais
+          campanhas de anúncios no Facebook e Instagram e podem ser usados para
+          mostrar anúncios deste negócio a quem já visitou o site. Só são ativados
+          depois de o utilizador clicar em "Aceitar" no banner de cookies, e podem ser
+          recusados sem afetar o funcionamento do site.
         </p>
       </section>
 
