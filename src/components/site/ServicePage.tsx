@@ -125,7 +125,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
               <div>
                 <p className="eyebrow text-ignition">O que pode tratar</p>
                 <h2 className="font-display mt-6 text-[clamp(2rem,4vw,3.2rem)] leading-[1.05] font-bold uppercase">
-                  {data.title.replace(/ em Braga$/, "")} — áreas de intervenção.
+                  Diagnóstico antes de mexer.
                 </h2>
                 <p className="mt-6 max-w-md text-[0.92rem] leading-[1.9] text-muted-foreground">
                   A abordagem da L.A. Tech é simples: perceber o problema, explicar o que foi encontrado e só depois decidir o que faz sentido.
@@ -135,9 +135,9 @@ export function ServicePage({ data }: { data: ServicePageData }) {
               <div className="space-y-10">
                 {data.sections.map((section) => (
                   <article key={section.heading} className="border-t border-border pt-8">
-                    <h3 className="font-display text-[1.55rem] font-bold uppercase tracking-[0.01em]">
+                    <h2 className="font-display text-[1.55rem] font-bold uppercase tracking-[0.01em]">
                       {section.heading}
-                    </h3>
+                    </h2>
                     <p className="mt-4 text-[0.92rem] leading-[1.9] text-foreground/80">{section.text}</p>
                     {section.items && (
                       <ul className="mt-5 grid gap-3 sm:grid-cols-2">

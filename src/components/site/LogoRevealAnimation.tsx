@@ -79,7 +79,7 @@ export function LogoRevealAnimation() {
         {/* Símbolo com máscara de revelação */}
         <img
           src={logoMark}
-          alt="Símbolo L.A. Tech Braga"
+          alt=""
           width={878}
           height={461}
           className="relative w-full h-auto"
