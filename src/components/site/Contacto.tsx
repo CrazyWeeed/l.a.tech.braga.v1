@@ -236,9 +236,9 @@ export function Footer() {
         <div className="grid gap-10 border-b border-border pb-12 md:grid-cols-[1fr_auto] md:items-end">
           <div>
             <p className="eyebrow text-ignition">Precisa de ajuda?</p>
-            <h2 className="font-display mt-4 text-[clamp(1.8rem,3vw,2.8rem)] font-bold leading-none uppercase">
+            <p className="font-display mt-4 text-[clamp(1.8rem,3vw,2.8rem)] font-bold leading-none uppercase">
               Diga o que está a acontecer.
-            </h2>
+            </p>
           </div>
           <a
             href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(

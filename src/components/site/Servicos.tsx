@@ -1,7 +1,7 @@
 import { Reveal } from "./Reveal";
 import servico1 from "@/assets/servico-1.webp";
 import servico2 from "@/assets/servico-2.webp";
-import servico3 from "@/assets/bench.jpg";
+import servico3 from "@/assets/bench.webp";
 
 const services = [
   {

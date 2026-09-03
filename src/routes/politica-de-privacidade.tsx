@@ -13,7 +13,6 @@ export const Route = createFileRoute("/politica-de-privacidade")({
       description,
       canonical: `${SITE_URL}/politica-de-privacidade`,
     }),
-    meta: [{ name: "robots", content: "index,follow" }],
   }),
   component: PoliticaDePrivacidade,
 });

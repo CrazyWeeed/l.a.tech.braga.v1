@@ -1,5 +1,5 @@
 import { Reveal, useParallax } from "./Reveal";
-import bench from "@/assets/bench.jpg";
+import bench from "@/assets/bench.webp";
 
 const steps = [
   {

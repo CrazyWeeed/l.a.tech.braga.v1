@@ -335,7 +335,7 @@ export const servicePages: Record<string, ServicePageData> = {
   empresas: {
     metaDescription: "Assistência informática para pequenos negócios em Braga: Microsoft 365, email, postos de trabalho, impressoras e backups.",
     eyebrow: "Apoio a empresas · Braga",
-    title: "Assistência Informática para Pequenos Negócios em Braga",
+    title: "Assistência Informática para Empresas em Braga",
     slug: "apoio-empresas-braga",
     intro:
       "Apoio informático para pequenos negócios em Braga sem departamento de TI: contas, email, Microsoft 365, impressoras, postos de trabalho e backups num único ponto de contacto.",

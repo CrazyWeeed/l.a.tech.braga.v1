@@ -13,9 +13,9 @@ import { Processo } from "@/components/site/Processo";
 import { Faq } from "@/components/site/Faq";
 import { Contacto, Footer } from "@/components/site/Contacto";
 
-const title = "L.A. Tech Braga — Especialista em Informática e Suporte Técnico";
+const title = "L.A. Tech Braga | Informática e Suporte Técnico";
 const description =
-  "Assistência informática em Braga para pessoas e pequenos negócios: reparação, redes, Microsoft 365 e recuperação de dados. Diagnóstico e suporte remoto ou ao domicílio.";
+  "Assistência informática em Braga para pessoas e pequenos negócios: reparação, redes, Microsoft 365 e suporte remoto ou ao domicílio.";
 
 const schemaOrg = {
   "@context": "https://schema.org",

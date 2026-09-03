@@ -14,7 +14,6 @@ export const Route = createFileRoute("/politica-de-cookies")({
       description,
       canonical: `${SITE_URL}/politica-de-cookies`,
     }),
-    meta: [{ name: "robots", content: "index,follow" }],
   }),
   component: PoliticaDeCookies,
 });

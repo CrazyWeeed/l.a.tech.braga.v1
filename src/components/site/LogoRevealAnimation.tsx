@@ -80,6 +80,8 @@ export function LogoRevealAnimation() {
         <img
           src={logoMark}
           alt=""
+          width={878}
+          height={461}
           className="relative w-full h-auto"
           style={{
             clipPath: revealed ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)",
